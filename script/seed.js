@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Blog, Reply, Thread} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -15,9 +15,47 @@ async function seed() {
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
   ])
+  
+  // Creating Blogs
+  const blogs = await Promise.all([
+    Blog.create({ title: 'Alternative Effective way to deal with student loan forgiveness ', description: 'Proposal: The government will buy the private student loans and the student has to pay the government back, but if they work for the government, they get no interest and discount based on the years of service. ' }),
+    Blog.create({ title: 'Broken Tax System', description:'why do we file our own taxes if the govenment already has all the information using our SSN' }),
+  ])
+  
+  // Creating Reply
+  const replies = await Promise.all([
+    Reply.create({
+      userId:1,
+      blogId:1,
+      message:'FIRST COMMENT'
+    }),
+    Reply.create({
+      userId:2,
+      blogId:1,
+      message:'Second COMMENT'
+    }),
+  ])
+  
+  // Creating Thread
+  const threads = await Promise.all([
+    Thread.create({
+      replyId: 1,
+      message:'Replying to the very 1st comment'
+    }),
+    Thread.create({
+      replyId: 1,
+      message:'Keeping the thread going'
+    }),
+    Thread.create({
+      replyId: 1,
+      message:'Chocolate Moose'
+    }),
+  ])
 
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${blogs.length} blogs`)
   console.log(`seeded successfully`)
+
   return {
     users: {
       cody: users[0],
