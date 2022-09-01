@@ -8,9 +8,6 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-
-
-
     const blogs = await Blog.findAll({
       include: [
         { 
