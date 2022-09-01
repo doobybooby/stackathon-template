@@ -10,6 +10,9 @@ export const Blogs = () => {
   const dispatch = useDispatch()
   // console.log(blogs, dispatch)
 
+
+  const currentTime = new Date()
+
   useEffect(()=> {
     getBlogs(dispatch)
   },[blogs.length])
@@ -17,7 +20,6 @@ export const Blogs = () => {
   return (
     <div>
       <BlogForm></BlogForm>
-      <button onClick={()=> getBlogs(dispatch)}>BLOGS</button>
       {
         blogs[0] ? 
           blogs.sort((a,b) => b.id - a.id).map( blog => 
@@ -26,6 +28,7 @@ export const Blogs = () => {
               {blog.image && <img src={blog.image} alt="image" />}
               <p>{blog.description}</p>
               <p><button>Down</button> {blog.rating} <button>Up</button></p>
+              <p>{ Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)/60) }H { Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) }Min AGO</p>
               <ul>
                   { blog.replies.map( reply => 
                     <li key={reply.id}>
@@ -34,6 +37,7 @@ export const Blogs = () => {
                     </li>
                   )}
               </ul>
+              
             </ul>
             
           ) :
