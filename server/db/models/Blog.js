@@ -17,6 +17,10 @@ const Blog = db.define('blog', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
+  isNewsPost: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 })
 
 module.exports = Blog

@@ -7,12 +7,6 @@ const setBlogs = blogs => ({type: SET_BLOGS, blogs})
 
 export const getBlogs = async dispatch => {
   const response = await axios.get('/api/blogs')
-  // const response = await axios.get('https://newsapi.org/v2/top-headlines', { 
-  //   params: {
-  //     'apiKey': process.env.REACT_APP_API_KEY_NEWSAPI,
-  //     'country': 'us'
-  //   }
-  // })
   console.log(response)
   return dispatch(setBlogs(response.data))
 }
