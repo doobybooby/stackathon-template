@@ -3,8 +3,10 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import auth from './auth'
 import blogs from './blog'
+import thread from './thread'
 
-const reducer = combineReducers({ auth, blogs })
+
+const reducer = combineReducers({ auth, blogs, thread })
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
 

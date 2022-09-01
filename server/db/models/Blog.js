@@ -6,6 +6,9 @@ const Blog = db.define('blog', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  image: {
+    type: Sequelize.TEXT,
+  },
   description: {
     type: Sequelize.STRING,
     allowNull: false

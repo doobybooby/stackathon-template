@@ -13,7 +13,7 @@ Reply.belongsTo(Blog)
 Blog.hasMany(Reply)
 Thread.belongsTo(Reply)
 Reply.hasMany(Thread)
-
+Blog.hasMany(Thread)
 
 module.exports = {
   db,
