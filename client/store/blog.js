@@ -7,7 +7,6 @@ const setBlogs = blogs => ({type: SET_BLOGS, blogs})
 
 export const getBlogs = async dispatch => {
   const response = await axios.get('/api/blogs')
-  console.log(response)
   return dispatch(setBlogs(response.data))
 }
 
@@ -34,7 +33,7 @@ export const _postBlog = async blog => {
   }
 }
 
-export default function(state = {}, action){
+export default function(state = [], action){
   switch (action.type) {
     case SET_BLOGS:
       return action.blogs

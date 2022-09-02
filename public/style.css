@@ -19,3 +19,13 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.articles-wrapper {
+  list-style: none;
+}
+
+.article {
+  list-style: none;
+  padding: 1rem;
+  background-color: aquamarine;
+}
