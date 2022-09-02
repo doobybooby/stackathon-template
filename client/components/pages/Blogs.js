@@ -8,7 +8,7 @@ export const Blogs = () => {
 
   const blogs = useSelector(state => state.blogs)
   const dispatch = useDispatch()
-  // console.log(blogs, dispatch)
+  console.log(typeof blogs, blogs)
 
 
   const currentTime = new Date()

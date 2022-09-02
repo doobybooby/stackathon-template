@@ -1,11 +1,15 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Navbar from './components/Navbar'
 import Routes from './Routes'
 import { getBlogs } from './store/blog'
+
 const App = () => {
+  const blogs = useSelector(state => state)
   const dispatch = useDispatch()
-  getBlogs(dispatch)
+  useEffect(()=>{
+    getBlogs(dispatch)
+  }, [])
   return (
     <div>
       <Navbar />
