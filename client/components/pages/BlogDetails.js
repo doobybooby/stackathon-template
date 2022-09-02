@@ -27,6 +27,7 @@ export const BlogDetails = () => {
             <h2>{blog.title}</h2>
             {blog.image && <img src={blog.image} alt="image" />}
             <h3>{blog.description}</h3>
+            <p>{ Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)/60) }H { Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) }Min AGO</p>
             <div style={{display:'flex'}}>
               <button onClick={()=>decrementRating(blog)}>Decrement</button>
               <h4>{blog.rating}</h4>
@@ -34,7 +35,6 @@ export const BlogDetails = () => {
               <button>COMMENT</button>
               <button>share</button>
             </div>
-            <p>{ Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)/60) }H { Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) }Min AGO</p>
           
           </div>
       }
