@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Blog, Reply, Thread} } = require('../server/db')
+const { db, models: { User, Blog, Reply }} = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -51,25 +51,6 @@ async function seed() {
     }),
   ])
   
-  // Creating Thread
-  const threads = await Promise.all([
-    Thread.create({
-      replyId: 1,
-      message:'Replying to the very 1st comment'
-    }),
-    Thread.create({
-      replyId: 1,
-      message:'Keeping the thread going'
-    }),
-    Thread.create({
-      replyId: 1,
-      message:'Chocolate Moose'
-    }),
-    Thread.create({
-      replyId: 2,
-      message:'Scary Snake'
-    }),
-  ])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${blogs.length} blogs`)

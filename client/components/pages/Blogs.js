@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import blog, { getBlogs } from '../../store/blog'
-import { getThread } from '../../store/thread'
 import { BlogForm } from '../utils/BlogForm'
 
 export const Blogs = () => {
@@ -38,7 +37,6 @@ export const Blogs = () => {
                   { blog.replies.map( reply => 
                     <li key={reply.id}>
                       {reply.message}
-                      {reply.threads.map( thread => <ul key={thread.id}>{thread.message}</ul> )}
                     </li>
                   )}
               </ul>

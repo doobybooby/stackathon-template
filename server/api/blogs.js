@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Blog, Reply, Thread, User }} = require('../db')
+const { models: { Blog, Reply, User }} = require('../db')
 const { isLoggedIn } = require('./middleware')
 
 module.exports = router
@@ -10,7 +10,6 @@ router.get('/', async (req, res, next) => {
       include: [
         { 
           model: Reply,
-          include: { model: Thread }
         }, {
           model: User,
           attributes: ['profileImage', 'username']
@@ -32,7 +31,6 @@ router.get('/:id', async (req, res, next) => {
       include: [
         { 
           model: Reply, 
-          include: { model: Thread }
         } ,{
           model: User,
           attributes: ['profileImage', 'username']
