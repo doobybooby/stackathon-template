@@ -1,5 +1,11 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  
+}
 body {
   font-family: sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -20,12 +26,100 @@ form div {
   display: inline-block;
 }
 
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 .articles-wrapper {
   list-style: none;
+  padding: 0;
 }
 
 .article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style: none;
-  padding: 1rem;
-  background-color: aquamarine;
+  padding: 0 1rem;
+  background-color: rgb(63, 63, 63);
+}
+
+.article-card {
+  width: 100%;
+  max-width: 900px;
+  background-color: white;
+  border-top: black 1px solid;
+}
+
+
+.article-header {
+  background-color: black;
+  color: white;
+}
+
+.article-header > img{
+  width: 300px;
+}
+
+.article-description {
+  padding: .5rem 1rem;
+}
+
+[class*='reuter']{
+  background-color: black;
+}
+
+[class*='cnn']{
+  background-color: red;
+  background-repeat: repeat;
+}
+
+[class*='cnbc']{
+  background-color: blue;
+}
+
+[class*='google']{
+  background: linear-gradient(#4285F4, #DB4437, #F4B400, #0F9D58);
+}
+
+
+/*       */
+/* BLOGS */
+/*       */
+
+.blog-component {
+  display: flex;
+  align-items: center;
+  background-color: #4285F4;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.blog-wrapper {
+  background-color: green;
+  border-top: 1px solid blue;
+  list-style: none;
+  padding: 0;
+  width: 65%;
+  align-items: center;
+  justify-content: center;
+}
+
+/*              */
+/* User Profile */
+/*              */
+
+.user-profile-component {
+  background-color: #4285F4;
+}
+
+.user-profile-card {
+  background-color: #0F9D58;
 }

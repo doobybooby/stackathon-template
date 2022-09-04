@@ -7,6 +7,7 @@ import { Blogs } from './components/pages/Blogs';
 import {me} from './store'
 import { Root } from './components/pages/Root';
 import { BlogDetails } from './components/pages/BlogDetails';
+import { ProfilePage } from './components/pages/ProfilePage';
 
 /**
  * COMPONENT
@@ -26,6 +27,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/blogs/:id" component={BlogDetails} />
             <Route path="/blogs" component={Blogs} />
+            <Route path="/profile" component={ProfilePage} />
             <Redirect to="/home" />
           </Switch>
         ) : (

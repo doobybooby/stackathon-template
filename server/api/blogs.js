@@ -1,7 +1,5 @@
 const router = require('express').Router()
-const { models: { Blog }} = require('../db')
-const Reply = require('../db/models/Reply')
-const Thread = require('../db/models/Thread')
+const { models: { Blog, Reply, Thread, User }} = require('../db')
 const { isLoggedIn } = require('./middleware')
 
 module.exports = router
@@ -11,8 +9,11 @@ router.get('/', async (req, res, next) => {
     const blogs = await Blog.findAll({
       include: [
         { 
-          model: Reply, 
+          model: Reply,
           include: { model: Thread }
+        }, {
+          model: User,
+          attributes: ['profileImage', 'username']
         }
       ]
     })
@@ -32,6 +33,9 @@ router.get('/:id', async (req, res, next) => {
         { 
           model: Reply, 
           include: { model: Thread }
+        } ,{
+          model: User,
+          attributes: ['profileImage', 'username']
         }
       ]
     })
@@ -60,9 +64,26 @@ router.put('/:id', isLoggedIn, async (req, res, next) => {
     })
 
     await blog.update(req.body)
+    await blog.save()
     res.send(blog)
   }
   catch(err){
     next(err)
   }
 })
+
+router.delete('/:id', isLoggedIn, async (req, res, next) => {
+  try {
+    await Blog.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.send(204)
+  }
+  catch(err){
+    next(err)
+  }
+})
+
+

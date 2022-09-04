@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import { GoogleSearch } from '../utils/GoogleSearch'
 /**
  * COMPONENT
  */
@@ -10,6 +10,7 @@ export const Home = props => {
   return (
     <div>
       <h3>Welcome, {username}</h3>
+      <GoogleSearch></GoogleSearch>
     </div>
   )
 }

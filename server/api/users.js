@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { models: { User }} = require('../db')
+const { isLoggedIn } = require('./middleware')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -12,6 +13,22 @@ router.get('/', async (req, res, next) => {
     })
     res.json(users)
   } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/', isLoggedIn, async( req, res, next) => {
+  try{
+    const user = await User.findOne({
+      where: {
+        id:req.user.id
+      }
+    })
+    await user.update(req.body)
+    await user.save()
+    res.json(user)
+  }
+  catch(err){
     next(err)
   }
 })

@@ -18,12 +18,12 @@ export const Blogs = () => {
   },[blogs.length])
 
   return (
-    <div>
+    <div className='blog-component flex-col'>
       <BlogForm></BlogForm>
       {
         blogs[0] ? 
           blogs.sort((a,b) => b.id - a.id).map( blog => 
-            <ul key={blog.id}  style={{backgroundColor:'black', color: 'white'}}>
+            <ul key={blog.id} className='blog-wrapper flex-col'>
               <button>
                 <a href={`/blogs/${blog.id}`}>DETAIL</a>
               </button>

@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { updateBlogRating, getBlogs } from '../../store/blog'
+import { Comments } from '../utils/Comments'
 
-export const BlogDetails = () => {
+export const BlogDetails = (props) => {
   const currentTime = new Date()
-  const dispatch = useDispatch()
   const params = useParams()
+  const dispatch = useDispatch()
   const blogs = useSelector(state => state.blogs)
   const blog = blogs.find(blog => blog.id === params.id*1)
-
+  const [showComments, setShowComments] = useState(false)
+console.log(props)
   const decrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, -1))
   }
 
   const incrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, 1))
+  }
+
+  const displayComments = ()=> {
+    setShowComments(prev => !prev)
   }
 
   return (
@@ -32,11 +38,15 @@ export const BlogDetails = () => {
               <button onClick={()=>decrementRating(blog)}>Decrement</button>
               <h4>{blog.rating}</h4>
               <button onClick={()=>incrementRating(blog)}>Increment</button>
-              <button>COMMENT</button>
-              <button>share</button>
+              <button onClick={displayComments}>COMMENT</button>
+              <button onClick={()=> alert(`localhost:8080${props.location.pathname}`)}>share</button>
             </div>
-          
           </div>
+      }
+      {
+        showComments 
+          ? <Comments blog={blog} /> 
+          : null
       }
     </div>
   )

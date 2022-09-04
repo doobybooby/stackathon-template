@@ -1,7 +1,6 @@
 const Dotenv = require('dotenv-webpack')
 
 module.exports = (env) => {
-  console.log(env)
   return {
     entry: [
       './client/index.js'
@@ -22,7 +21,12 @@ module.exports = (env) => {
               '@babel/preset-react'
             ]
           }
-        }
+        }, {
+          test: /\.png/,
+          use: {
+            loader: 'url-loader'
+          },
+        },
       ]
     },
     plugins: [
