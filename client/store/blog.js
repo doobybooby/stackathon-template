@@ -12,7 +12,6 @@ export const getBlogs = async dispatch => {
 }
 
 export const updateBlogRating = (blog, diff) => {
-  console.log('----')
   return async (dispatch, getState) => {
     console.log('----getState----', getState())
     const response = await axios.put(`/api/blogs/${blog.id}`, { rating: blog.rating + diff  }, { headers: { authorization: window.localStorage.getItem('token') }})
@@ -22,7 +21,6 @@ export const updateBlogRating = (blog, diff) => {
 
 export const postBlog = (title, description) => {
   return async (dispatch) => {
-    console.log(title, description, window.localStorage.getItem('token'))
     const response = await axios.post('/api/blogs', 
       { title, description }, 
       {
@@ -44,7 +42,6 @@ export default function(state = [], action){
       return action.blog
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
-
     default: 
       return state
   }

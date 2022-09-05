@@ -6,21 +6,33 @@ export const ProfilePage = () => {
   const blogs = useSelector(state => state.blogs)
   const usersBlogs = blogs.filter( blog => blog.userId === user.id)
 
-  console.log(blogs, user)
+  console.log(usersBlogs)
   return (
-    <div className='user-profile-component flex-row'>
+    <div className='user-profile-component'>
       <div className='user-profile-card'>
         <div className='flex-row'> 
           <h3>{user.username.toUpperCase()}</h3>
           <button>Edit</button>
         </div>
         <img src={user.profileImage} alt="" />
+        <p>Blogs Written: {usersBlogs.length}</p>
+        <p>Received Upvotes : {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}</p>
       </div>
-      <div>
+      <ul>
+        <h2>Blogs</h2>
         {
-          usersBlogs.map( blog => <p>{blog.title}</p>)
+          usersBlogs.map( blog => <li key={blog.id}>
+            <div className='flex-row'> 
+              <img width='5%' src={blog.user.profileImage} alt="" />
+              <h3>{ blog.title }</h3>
+            </div>
+            <p>{ blog.description }</p>
+            { blog.image && <img src={blog.image}></img>}
+            <p><button>-</button>{ blog.rating }<button>+</button></p>
+
+          </li>)
         }
-      </div>
+      </ul>
     </div>
   )
 }

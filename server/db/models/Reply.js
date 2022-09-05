@@ -5,20 +5,18 @@ const Reply = db.define('reply', {
   refId: {
     type: Sequelize.INTEGER,
   },
-  commentId: {
-    type: Sequelize.INTEGER,
-  },
   message: {
     type: Sequelize.STRING,
     allowNull: false
   },
 })
 
-const addRefId = (reply)=>{
+const addRefId = reply => {
   console.log(reply)
-  if(reply.blogId) {
-    reply.refId = reply.blogId
-  }
+  if( reply.blogId ) 
+    reply.refId = reply.blogId  
+  else if( reply.replyId )
+    reply.refId = reply.replyId
   else reply.refId = reply.commentId
 }
 

@@ -11,6 +11,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const replies = await Reply.findAll({
+      where: {
+        refId : req.params.id
+      }
+    })
+    res.json(replies)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const replies = await Reply.create(req.body)

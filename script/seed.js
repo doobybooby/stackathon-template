@@ -29,7 +29,18 @@ async function seed() {
       rating: 5197,
       userId: 1
     }),
-    Blog.create({ title: 'Broken Tax System', description:'why do we file our own taxes if the govenment already has all the information using our SSN', rating: 7340, userId: 2}),
+    Blog.create({ 
+      title: 'Broken Tax System', 
+      description:'why do we file our own taxes if the govenment already has all the information using our SSN', 
+      rating: 7340, 
+      userId: 2
+    }),
+    Blog.create({ 
+      title: 'Is it better to barter during inflation?', 
+      description:'why do we file our own taxes if the govenment already has all the information using our SSN', 
+      rating: 7340, 
+      userId: 1
+    }),
   ])
   
   // Creating Reply
@@ -46,8 +57,20 @@ async function seed() {
     }),
     Reply.create({
       userId:2,
-      commentId:2,
+      blogId:2,
+      message:'Blog 2 initial comment'
+    }),
+
+    // Thread a comment 
+    Reply.create({
+      userId:2,
+      replyId:2,
       message:'ATTEMPT TO THREAD A COMMENT'
+    }),
+    Reply.create({
+      userId:2,
+      replyId:2,
+      message:'CHOCOLOATE MOOSE'
     }),
   ])
   
