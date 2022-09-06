@@ -3,6 +3,7 @@ import axios from "axios"
 const SET_BLOGS = 'SET_BLOGS'
 const PUBLISH_BLOG = 'PUBLISH_BLOG'
 const UPDATE_BLOG = 'UPDATE_BLOG'
+const DELETE_BLOG = 'DELETE_BLOG'
 
 const setBlogs = blogs => ({type: SET_BLOGS, blogs})
 
@@ -13,8 +14,23 @@ export const getBlogs = async dispatch => {
 
 export const updateBlogRating = (blog, diff) => {
   return async (dispatch, getState) => {
-    console.log('----getState----', getState())
     const response = await axios.put(`/api/blogs/${blog.id}`, { rating: blog.rating + diff  }, { headers: { authorization: window.localStorage.getItem('token') }})
+    getBlogs(dispatch)
+  }
+}
+
+export const deleteBlog = ( blog ) => {
+  return async (dispatch ) => {
+    const response = await axios.delete('/api/blogs', 
+      { data : {blog} }, 
+      {
+        headers: { 
+          authorization : window.localStorage.getItem('token')
+        }
+      }
+    )
+    const data = response.data
+    dispatch({ type:DELETE_BLOG, blog:data })
     getBlogs(dispatch)
   }
 }
@@ -42,6 +58,8 @@ export default function(state = [], action){
       return state.push(action.blog)
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
+    case DELETE_BLOG:
+      return state.filter( blog => blog.id !== action.blog.id)
     default: 
       return state
   }

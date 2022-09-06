@@ -4,6 +4,21 @@ const { isLoggedIn } = require('./middleware')
 
 module.exports = router
 
+
+router.delete('/', async (req, res, next) => {
+  try {
+    await Blog.destroy({
+      where : {
+        id: req.body.blog.id
+      }
+    })
+    res.send(204)
+  }
+  catch(err){
+    next(err)
+  }
+})
+
 router.get('/', async (req, res, next) => {
   try {
     const blogs = await Blog.findAll({
@@ -71,18 +86,6 @@ router.put('/:id', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', isLoggedIn, async (req, res, next) => {
-  try {
-    await Blog.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    res.send(204)
-  }
-  catch(err){
-    next(err)
-  }
-})
+
 
 

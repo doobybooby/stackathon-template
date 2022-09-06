@@ -10,17 +10,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         isLoggedIn 
           ? (
             <div style={{display:'flex', justifyContent:'space-between'}}>
-              <div className='dropdown'>
+              <div>
                 <Link to="/home">Home</Link>
-                <div className="dropdown-content">
-                  <a href="/blogs">Blogs</a>
-                  <a href="/news">News</a>
-                </div>
+                <Link to="/blogs">Blogs </Link>
+                <Link to="/news">News</Link>
               </div>
               <h3>{displayTime()}</h3>
               <div className="dropdown">
                 <Link to="/account">Account</Link>
                 <div className="dropdown-content">
+                  <a href="/profile">Profile</a>
+                  <a href="/profile/create_blog">Create Blog</a>
                   <a href="/" onClick={handleClick}>
                     Logout
                   </a>
@@ -30,7 +30,11 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           ) 
           : (
             <div style={{display:'flex', justifyContent:'space-between'}}>
-              <Link to="/">Home</Link>
+              <div>
+                <Link to="/">Home</Link>
+                <Link to="/blogs">Blogs </Link>
+                <Link to="/news">News</Link>
+              </div>
               <h3>{displayTime()}</h3>
               <Link to="/account">Account</Link>
             </div>

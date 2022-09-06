@@ -12,8 +12,6 @@ export const BlogDetails = (props) => {
   const blog = blogs.find(blog => blog.id === params.id*1)
   const [showComments, setShowComments] = useState(false)
 
-  console.log(props)
-
   const decrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, -1))
   }
@@ -42,7 +40,6 @@ export const BlogDetails = (props) => {
               <button onClick={()=>incrementRating(blog)}>Increment</button>
               <button onClick={displayComments}>COMMENT</button>
               <button onClick={()=> alert(`localhost:8080${props.location.pathname}`)}>share</button>
-              
             </div>
           </div>
       }

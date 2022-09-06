@@ -72,6 +72,16 @@ async function seed() {
       replyId:2,
       message:'CHOCOLOATE MOOSE'
     }),
+    Reply.create({
+      userId:1,
+      blogId:3,
+      message:'Or start a go fund me'
+    }),
+    Reply.create({
+      userId:1,
+      replyId:3,
+      message:'Or sell your feet pic'
+    }),
   ])
   
 

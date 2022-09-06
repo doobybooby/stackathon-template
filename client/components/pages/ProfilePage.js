@@ -5,6 +5,8 @@ import { logout } from '../../store'
 import { getBlogs } from '../../store/blog'
 import { BlogForm } from '../utils/BlogForm'
 import { ReusableBlog } from '../utils/ReusableBlog'
+import { AiTwotoneEdit } from 'react-icons/ai'
+
 
 export const ProfilePage = () => {
   const user = useSelector(state => state.auth)
@@ -15,33 +17,29 @@ export const ProfilePage = () => {
   useEffect(()=> {
     getBlogs(dispatch)
     usersBlogs = blogs.filter( blog => blog.userId === user.id)
-  },[blogs.length])
-
-  usersBlogs[0] ? console.log(Date.parse(usersBlogs[0].createdAt) ): null
-
+  },[blogs.length, dispatch])
 
   return (
-    <div className='user-profile-component'>
-      <div className='user-profile-card flex-row' >
-        <div>
-          <div className='flex-row'> 
-            <h3>{user.username.toUpperCase()}</h3>
-            <button>Edit</button>
-          </div>
-          <img src={user.profileImage} alt="" />
-          <p>Contributed blogs: {usersBlogs.length}</p>
-          <p>Received Upvotes : {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}</p>
+    <div className='flex-row user-profile-component'>
+      <div className='user-profile-card ' >
+        <div className='flex-row user-profile-card-header'> 
+          <h2>{user.username.toUpperCase()}</h2>
+          <a href="/profile/edit" ><AiTwotoneEdit size={'2em'}/></a>
         </div>
-        <BlogForm />
+        <img src={user.profileImage} width='50%' />
+        <p>Following : 0</p>
+        <p>Contributed blogs: {usersBlogs.length}</p>
+        <p>Received Upvotes : {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}</p>
       </div>
-      <ul>
-        <h2>Blogs</h2>
-        {
-          usersBlogs &&
-          usersBlogs.sort((a,b)=>  Date.parse(b.createdAt) - Date.parse(a.createdAt))
-            .map( blog => <ReusableBlog  key={blog.id} blog={blog} /> )
-        }
-      </ul>
+      <div className='profile-blog-section'>
+        <ul className='profile-blogs-wrapper flex-col'>
+          {
+            usersBlogs &&
+            usersBlogs.sort((a,b)=>  Date.parse(b.createdAt) - Date.parse(a.createdAt))
+              .map( blog => <ReusableBlog  key={blog.id} blog={blog} /> )
+          }
+        </ul>
+      </div>
     </div>
   )
 }

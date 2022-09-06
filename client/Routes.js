@@ -10,6 +10,8 @@ import { BlogDetails } from './components/pages/BlogDetails';
 import { ProfilePage } from './components/pages/ProfilePage';
 import { Landing } from './components/pages/Landing';
 import { NavAccount } from './components/utils/NavAccount';
+import { ProfilePageEdit } from './components/pages/ProfilePageEdit';
+import { BlogForm } from './components/utils/BlogForm';
 
 /**
  * COMPONENT
@@ -29,6 +31,8 @@ class Routes extends Component {
             <Route path="/home" component={Landing} />
             <Route path="/blogs/:id" component={BlogDetails} />
             <Route path="/blogs" component={Blogs} />
+            <Route path="/profile/create_blog" component={BlogForm} />
+            <Route path="/profile/edit" component={ProfilePageEdit} />
             <Route path="/profile" component={ProfilePage} />
             <Redirect to="/profile" />
           </Switch>

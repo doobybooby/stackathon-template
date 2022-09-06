@@ -25,6 +25,12 @@ label {
   flex-direction: column;
 }
 
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+
 form div {
   margin: 1em;
   display: inline-block;
@@ -113,6 +119,32 @@ nav a {
 /*  NAV Bar  */
 /*           */
 
+
+
+/*                 */
+/*                 */
+/*  EDIT USER PAGE */
+/*                 */
+/*                 */
+
+.edit-icon {
+  width: 100px;
+}
+
+.edit-user-profile-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+/*                 */
+/*     END OF      */
+/*    EDIT USER    */
+/*                 */
 .articles-wrapper {
   list-style: none;
   padding: 0;
@@ -125,7 +157,7 @@ nav a {
   align-items: center;
   list-style: none;
   padding: 0 1rem;
-  background-color: rgb(63, 63, 63);
+  background-color: #023047
 }
 
 .article-card {
@@ -189,16 +221,70 @@ nav a {
   justify-content: center;
 }
 
+
+.reusable-blog-card {
+  background-color: #046DA1;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  width: 470px
+}
+.reusable-blog-card {
+  margin-bottom: 1rem;
+}
+
+.reusable-blog-header {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.reusable-blog-title {
+  justify-content: space-between;
+}
+
+
+.reusable-blog-card > div > * {
+  width: 470px;
+}
+
+.profile-blogs-wrapper {
+  background-color: #F4B400;
+  align-items: center;
+  
+}
+
+.profile-blog-section {
+  width: 100%;
+  
+}
+
+
+.like-comment-share{
+  justify-content: space-around;
+  
+}
+
+
+
+
 /*              */
 /* User Profile */
 /*              */
 
 .user-profile-component {
   background-color: #4285F4;
+  width: 100%;
+
 }
 
 .user-profile-card {
   background-color: #219EBC;
+  padding: 2rem ;
+}
+
+.user-profile-card-header{
+  align-items: center;
 }
 
 /*               */
