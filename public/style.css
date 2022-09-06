@@ -16,16 +16,6 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 .flex-row {
   display: flex;
 }
@@ -35,11 +25,98 @@ form div {
   flex-direction: column;
 }
 
+form div {
+  margin: 1em;
+  display: inline-block;
+}
 
+
+
+
+/*         */
+/* NAV Bar */
+/*         */
+
+.nav-component {
+  background-color: #023047;
+  color: #8ECAE6;
+}
+
+nav a {
+  color: #8ECAE6;
+  display: inline-block;
+  margin: 1em;
+  text-transform: uppercase;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #343a40;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/*           */
+/*  END OF   */
+/*  NAV Bar  */
+/*           */
+
+
+
+
+/*         */
+/* NAV Bar */
+/*         */
+
+.login {
+  background-color: #046DA1;
+}
+.signup {
+  background-color:#035883
+}
+
+.account-page {
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+  font-size: 2rem;
+}
+
+
+.auth-form-submit-button {
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: #FB8500;
+  width: 100%;
+}
+
+
+/*           */
+/*  END OF   */
+/*  NAV Bar  */
+/*           */
 
 .articles-wrapper {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .article {
@@ -121,5 +198,84 @@ form div {
 }
 
 .user-profile-card {
-  background-color: #0F9D58;
+  background-color: #219EBC;
+}
+
+/*               */
+/*    Landing    */
+/*               */
+
+.landing-component {
+  background-color:#023047;
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  margin: 0;
+}
+
+
+/*                 */
+/*  Google Search  */
+/*                 */
+
+
+.gcse-search-component {
+  /* background-color: #4285F4; */
+  /* padding: 1rem; */
+
+}
+
+.gsc-input {
+  padding: 0;
+}
+
+.gsc-search-box > * {
+  padding: 0;
+  margin: 0;
+
+}
+
+#___gcse_0 {
+  /* background-color:#F4B400; */
+  /* padding: 2rem; */
+}
+
+#___gcse_0 > div{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.gsc-control-wrapper-cse {
+  /* background-color: black; */
+  padding: 1rem;
+  margin: 0rem;
+}
+
+.gsc-search-box {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #DB4437; */
+}
+
+.gsc-search-box tr {
+  padding: 0;
+  margin: 0;
+}
+
+.gsc-input-box {
+  padding: 0;
+  margin: 0;
+}
+
+.gsc-search-button {
+  padding: 0;
+  margin: 0;
+
 }

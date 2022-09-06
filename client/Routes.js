@@ -8,6 +8,8 @@ import {me} from './store'
 import { Root } from './components/pages/Root';
 import { BlogDetails } from './components/pages/BlogDetails';
 import { ProfilePage } from './components/pages/ProfilePage';
+import { Landing } from './components/pages/Landing';
+import { NavAccount } from './components/utils/NavAccount';
 
 /**
  * COMPONENT
@@ -24,20 +26,21 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route path="/home" component={Landing} />
             <Route path="/blogs/:id" component={BlogDetails} />
             <Route path="/blogs" component={Blogs} />
             <Route path="/profile" component={ProfilePage} />
-            <Redirect to="/home" />
+            <Redirect to="/profile" />
           </Switch>
         ) : (
           <Switch>
-            <Route path='/' exact component={ Login } />
+            <Route path='/' exact component={ Landing } />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/blogs/:id" component={BlogDetails} />
             <Route path="/blogs" component={Blogs} />
             <Route path="/root" component={Root} />
+            <Route path="/account" component={NavAccount} />
           </Switch>
         )}
       </div>

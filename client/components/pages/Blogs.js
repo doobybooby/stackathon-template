@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import blog, { getBlogs } from '../../store/blog'
-import { BlogForm } from '../utils/BlogForm'
+import { getBlogs } from '../../store/blog'
 
 export const Blogs = () => {
 
@@ -18,7 +17,6 @@ export const Blogs = () => {
 
   return (
     <div className='blog-component flex-col'>
-      <BlogForm></BlogForm>
       {
         blogs[0] ? 
           blogs.sort((a,b) => b.id - a.id).map( blog => 

@@ -5,6 +5,7 @@ import { postBlog } from '../../store/blog'
 export const BlogForm = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [uploadFile, setUploadFile] = useState();
 
   const dispatch = useDispatch()
 
@@ -16,18 +17,39 @@ export const BlogForm = () => {
   }
 
   const handleClick = ()=> {
-    dispatch(postBlog(title, description))
+    dispatch(postBlog(title, description, uploadFile))
   }
 
+  const inputImage = (ev) => {
+
+    const Data = new FormData()
+
+    const file = ev.target.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      Data.append('file', reader.result)
+      setUploadFile(reader.result);
+      console.log('----dData-', Data)
+    });
+    reader.readAsDataURL(file);
+    console.log('----dData-', Data)
+  }
+
+
   return (
-    <div>BlogForm
-      <form action="">
-        <label htmlFor="">Title:</label>
-        <input type="text" onChange={inputName}/>
-        <label htmlFor="">Description:</label>
-        <input type="text" onChange={inputDescription}/>
+    <div>
+      <form >
+        <label htmlFor="">Title:
+          <input type="text" onChange={inputName}/>
+        </label>
+        <label htmlFor="">Description:
+          <input type="text" onChange={inputDescription}/>
+        </label>
+        <label htmlFor="">Image:
+          <input type="file" onChange={inputImage}/>
+        </label>
+        <button onClick={handleClick}>BLOG</button>
       </form>
-      <button onClick={handleClick}>BLOG</button>
     </div>
   )
 }

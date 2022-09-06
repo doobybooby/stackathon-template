@@ -12,7 +12,6 @@ const Reply = db.define('reply', {
 })
 
 const addRefId = reply => {
-  console.log(reply)
   if( reply.blogId ) 
     reply.refId = reply.blogId  
   else if( reply.replyId )

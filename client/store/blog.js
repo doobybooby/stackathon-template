@@ -19,10 +19,10 @@ export const updateBlogRating = (blog, diff) => {
   }
 }
 
-export const postBlog = (title, description) => {
+export const postBlog = (title, description, file) => {
   return async (dispatch) => {
     const response = await axios.post('/api/blogs', 
-      { title, description }, 
+      { title, description, image:file }, 
       {
         headers: { 
           authorization : window.localStorage.getItem('token')
@@ -39,7 +39,7 @@ export default function(state = [], action){
     case SET_BLOGS:
       return action.blogs
     case PUBLISH_BLOG:
-      return action.blog
+      return state.push(action.blog)
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
     default: 

@@ -46,6 +46,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', isLoggedIn, async (req, res, next) => {
   try {
     const blog = await Blog.create(req.body)
+    blog.update({ userId:req.user.id })
     res.send(blog)
   }
   catch(err){

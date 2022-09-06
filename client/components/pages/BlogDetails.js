@@ -11,7 +11,8 @@ export const BlogDetails = (props) => {
   const blogs = useSelector(state => state.blogs)
   const blog = blogs.find(blog => blog.id === params.id*1)
   const [showComments, setShowComments] = useState(false)
-console.log(props)
+
+  console.log(props)
 
   const decrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, -1))

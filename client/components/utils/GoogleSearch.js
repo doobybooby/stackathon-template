@@ -2,6 +2,9 @@ import React from 'react'
 
 export const GoogleSearch = () => {
   return (
-    <div>GoogleSearch</div>
+    <div className='gcse-search-component'>
+      <div className="gcse-search"></div>
+
+    </div>
   )
 }
