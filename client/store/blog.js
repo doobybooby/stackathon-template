@@ -21,13 +21,14 @@ export const updateBlogRating = (blog, diff) => {
 
 export const deleteBlog = ( blog ) => {
   return async (dispatch ) => {
-    const response = await axios.delete('/api/blogs', 
-      { data : {blog} }, 
-      {
+    const response = await axios.delete('/api/blogs', {
         headers: { 
           authorization : window.localStorage.getItem('token')
+        },
+        data: {
+          blog
         }
-      }
+      }, 
     )
     const data = response.data
     dispatch({ type:DELETE_BLOG, blog:data })
@@ -49,6 +50,23 @@ export const postBlog = (title, description, file) => {
     return dispatch({type: PUBLISH_BLOG, blog: data})
   }
 }
+
+export const modifyBlog = (blog) => {
+  return async dispatch => {
+    console.log('modify blog', blog)  
+    const response = await axios.put(`/api/blogs`, 
+      { blog },
+      {
+        headers: {
+          authorization: window.localStorage.getItem('token')
+        }
+      }
+    )
+    console.log('did the blog modify:?', response.data)
+    getBlogs(dispatch) 
+  }
+}
+
 
 export default function(state = [], action){
   switch (action.type) {

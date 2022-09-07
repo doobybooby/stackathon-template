@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteBlog, updateBlogRating } from '../../store/blog'
+import { deleteBlog, updateBlogRating, modifyBlog } from '../../store/blog'
 import { AiTwotoneDelete } from 'react-icons/ai'
-import { BiDownvote, BiUpvote, BiComment, BiShare } from 'react-icons/bi'
+import { BiDownvote, BiUpvote, BiComment, BiShare, BiEdit } from 'react-icons/bi'
 import { Comments } from '../utils/Comments'
-import { useEffect } from 'react'
 import { addComment, getComments } from '../../store/comments'
+import { BlogEdit } from '../pages/BlogEdit'
 
 export const ReusableBlog = (props) => {
   const { blog } = props
@@ -15,6 +15,7 @@ export const ReusableBlog = (props) => {
   const dispatch = useDispatch()
   const comments = useSelector(state => state.comments)
   const blogComments = comments.filter(comment => comment.blogId === blog.id)
+  const [allowEdit, setAllowEdit] = useState(false)
 
   const decrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, -1))
@@ -40,21 +41,30 @@ export const ReusableBlog = (props) => {
 
   const submitComment = (ev)=> {
     ev.preventDefault()
-    console.log(commentInput)
     dispatch(addComment(commentInput, blog.id))
     setCommentInput('')
+  }
+
+  const toggleShowHide =()=> {
+    setAllowEdit(prev => !prev)
   }
 
   return (
     <div className='reusable-blog-card flex-col'>
       {
+        !allowEdit ?
         <div > 
           <div className='flex-row reusable-blog-header'>
             <div className='flex-row '>
               <img width='15%' src={blog.user.profileImage} alt="" />
               <h3>{blog.user.username}</h3>
             </div>
-            <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
+            <div>
+              <button onClick={()=> setAllowEdit(prev => !prev)}>
+                <BiEdit size={'2rem'} />
+              </button>
+              <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
+            </div>
           </div>
           <h3>{ blog.title }</h3>
           <p>{ Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)/60) }H { Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) }Min AGO</p>
@@ -70,7 +80,7 @@ export const ReusableBlog = (props) => {
             <div><BiShare size={'2rem'}/></div>
           </div>
           <form className='comment-form'>
-            <input type="text" value={commentInput} onChange={handleInput}/>
+            <input type="text" value={commentInput} onChange={handleInput} placeholder='Add comment...'/>
             <button onClick={submitComment} >ADD</button>
           </form>
           {
@@ -78,6 +88,8 @@ export const ReusableBlog = (props) => {
             blogComments.map(reply => <Comments key={reply.id} reply={reply}/>)
           }
         </div>
+        : 
+        <BlogEdit blog={blog} onClick={toggleShowHide}/>
       }
     </div>
   )
