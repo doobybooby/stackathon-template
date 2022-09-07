@@ -21,18 +21,12 @@ export const BlogForm = () => {
   }
 
   const inputImage = (ev) => {
-
-    const Data = new FormData()
-
     const file = ev.target.files[0];
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      Data.append('file', reader.result)
       setUploadFile(reader.result);
-      console.log('----dData-', Data)
     });
     reader.readAsDataURL(file);
-    console.log('----dData-', Data)
   }
 
 

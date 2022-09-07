@@ -19,6 +19,19 @@ router.delete('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id/comments', async (req, res, next) => {
+  try {
+    const comments = await Reply.findAll({
+      where: {
+        blogId:req.params.id
+      }
+    })
+    res.json(comments)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/', async (req, res, next) => {
   try {
     const blogs = await Blog.findAll({

@@ -12,7 +12,8 @@ Reply.belongsTo(Blog)
 Blog.hasMany(Reply)
 Blog.belongsTo(User)
 User.hasMany(Blog)
-Reply.hasMany(Reply)
+
+Reply.hasMany(Reply, {as:'Threads'})
 
 module.exports = {
   db,

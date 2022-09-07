@@ -20,6 +20,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 <Link to="/account">Account</Link>
                 <div className="dropdown-content">
                   <a href="/profile">Profile</a>
+                  <a href="/profile/edit">Edit</a>
                   <a href="/profile/create_blog">Create Blog</a>
                   <a href="/" onClick={handleClick}>
                     Logout

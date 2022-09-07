@@ -265,6 +265,18 @@ nav a {
   
 }
 
+.comment-form {
+  display: flex;
+}
+.comment-form > input {
+  flex: 1;
+  padding: .5rem;
+}
+.comment-form > button {
+  flex: 0;
+
+}
+
 
 
 

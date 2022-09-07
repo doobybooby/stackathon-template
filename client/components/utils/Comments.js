@@ -1,41 +1,54 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import reply, { getReply } from '../../store/reply'
+import { addReply, getReply } from '../../store/reply'
 
 export const Comments = (props) => {
-  const comment = props.reply
-  const [threads, setThreads] = useState(false)
-  const replies = useSelector(state => state.reply)
+  const reply = props.reply
   const dispatch = useDispatch()
+  const [shouldDisplayThread, setShouldDisplayThread] = useState(false)
+  const replies = useSelector(state => state.reply)
+  const commentThread = replies.filter(r => r.replyId === reply.id)
+
+  const [inputThread, setInputThread] = useState('')
 
 
-  const displayThreads = () => {
-    if( replies ) {
-      const replyArray = Array.from(replies)
-      replyArray.map( reply => console.log(reply.refId, comment.id))
-      // console.log('---', comment.id)
-      return replyArray.map( reply => {
-        // if(reply.refId === comment.id) 
-          return <ul key={reply.id}>
-            <li>
-              <Comments reply={reply} />
-            </li>
-          </ul> })
-    }
-    else return null
+
+  const fetchThreads = (id) => {
+    dispatch(getReply(id))
   }
 
+  const displayThread = () => {
+    setShouldDisplayThread(prev => !prev)
+    fetchThreads(reply.id)
+  }
+  
+  
+  const handleInput = (ev)=> {
+    setInputThread(ev.target.value)
+  }
+  
+  const submitThread = (ev) => {
+    ev.preventDefault()
+    dispatch(addReply(inputThread, reply.id))
+    setInputThread('')
+  }
 
-  console.log(replies)
   return (
     <div>
-      <p>{comment.message}</p>
-      <button onClick={()=> {
-          setThreads(prev => !prev)
-          dispatch(getReply(comment.id))
-        }}>Threads</button>
+      {reply.message}
+      <button onClick={displayThread}>^</button>
+      <ul>
+        {
+          shouldDisplayThread && 
+          commentThread.map(thread => <li key={thread.id}>{thread.message}</li> )
+        }
+      </ul>      
       {
-        threads &&displayThreads()
+        shouldDisplayThread &&
+        <form>
+          <input type="text" value={inputThread} onChange={handleInput}/>
+          <button onClick={submitThread}>Thread</button>
+        </form>
       }
     </div>
   )

@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteBlog, updateBlogRating } from '../../store/blog'
 import { AiTwotoneDelete } from 'react-icons/ai'
 import { BiDownvote, BiUpvote, BiComment, BiShare } from 'react-icons/bi'
+import { Comments } from '../utils/Comments'
+import { useEffect } from 'react'
+import { addComment, getComments } from '../../store/comments'
 
 export const ReusableBlog = (props) => {
   const { blog } = props
-  const dispatch = useDispatch()
   const currentTime = new Date()
+  const [ commentInput, setCommentInput ] = useState('')
   const [ shouldDisplayComment, setShouldDisplayComment ] = useState(false)
+  const dispatch = useDispatch()
+  const comments = useSelector(state => state.comments)
+  const blogComments = comments.filter(comment => comment.blogId === blog.id)
 
   const decrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, -1))
@@ -20,10 +26,24 @@ export const ReusableBlog = (props) => {
     dispatch(deleteBlog(blog))
   }
   const displayComment = ()=> {
-    console.log(blog.replies)
     setShouldDisplayComment(prev => !prev)
+    fetchComments(blog.id)
   }
 
+  const handleInput = (ev) => {
+    setCommentInput(ev.target.value)
+  }
+
+  const fetchComments = (id) => {
+    dispatch(getComments(id))
+  }
+
+  const submitComment = (ev)=> {
+    ev.preventDefault()
+    console.log(commentInput)
+    dispatch(addComment(commentInput, blog.id))
+    setCommentInput('')
+  }
 
   return (
     <div className='reusable-blog-card flex-col'>
@@ -31,7 +51,7 @@ export const ReusableBlog = (props) => {
         <div > 
           <div className='flex-row reusable-blog-header'>
             <div className='flex-row '>
-              <img width='10%' src={blog.user.profileImage} alt="" />
+              <img width='15%' src={blog.user.profileImage} alt="" />
               <h3>{blog.user.username}</h3>
             </div>
             <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
@@ -49,9 +69,13 @@ export const ReusableBlog = (props) => {
             <div><BiComment size={'2rem'} onClick={displayComment}/></div>
             <div><BiShare size={'2rem'}/></div>
           </div>
+          <form className='comment-form'>
+            <input type="text" value={commentInput} onChange={handleInput}/>
+            <button onClick={submitComment} >ADD</button>
+          </form>
           {
             shouldDisplayComment &&
-            blog.replies.map(reply => <p key={reply.id}> {reply.message} <button>showThread</button></p>)
+            blogComments.map(reply => <Comments key={reply.id} reply={reply}/>)
           }
         </div>
       }

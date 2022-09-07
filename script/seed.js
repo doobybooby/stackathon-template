@@ -82,6 +82,11 @@ async function seed() {
       replyId:3,
       message:'Or sell your feet pic'
     }),
+    Reply.create({
+      userId:1,
+      replyId:7,
+      message:'Or sell your feet pic'
+    }),
   ])
   
 

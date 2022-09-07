@@ -15,7 +15,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const replies = await Reply.findAll({
       where: {
-        refId : req.params.id
+        replyId : req.params.id
       }
     })
     res.json(replies)
@@ -38,7 +38,7 @@ router.put('/:id', async (req, res, next) => {
   try {
     const replies = await Reply.findOne({
       where: {
-        blogId:req.params.id
+        replyId:req.params.id
       }
     })
     await replies.update(req.body)

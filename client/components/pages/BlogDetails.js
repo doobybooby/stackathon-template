@@ -40,6 +40,7 @@ export const BlogDetails = (props) => {
               <button onClick={()=>incrementRating(blog)}>Increment</button>
               <button onClick={displayComments}>COMMENT</button>
               <button onClick={()=> alert(`localhost:8080${props.location.pathname}`)}>share</button>
+              
             </div>
           </div>
       }

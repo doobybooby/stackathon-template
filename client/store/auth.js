@@ -38,9 +38,47 @@ export const authenticate = (username, password, method) => async dispatch => {
   }
 }
 
+export const editProfile = (userForm) => {
+  return async dispatch =>  {
+    const {username, password, profileImage } = userForm
+    console.log('user wants to change their password, ', username)
+
+    if( password === ''){
+      const response = await axios.put('/api/users', 
+        {
+          username,
+          profileImage,
+        },
+        {
+          headers : {
+            authorization: window.localStorage.getItem('token')
+          }
+        }
+      )
+      console.log(response.data, userForm)
+    }
+    else {
+      const response = await axios.put('/api/users', 
+        {
+          username,
+          profileImage,
+          password
+        },
+        {
+          headers : {
+            authorization: window.localStorage.getItem('token')
+          }
+        }
+      )
+      console.log(response.data, userForm)
+
+    }
+  }
+}
+
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)
-  history.push('/login')
+  // history.push('/login')
   return {
     type: SET_AUTH,
     auth: {}
