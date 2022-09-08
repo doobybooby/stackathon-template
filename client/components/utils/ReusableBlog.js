@@ -58,16 +58,17 @@ export const ReusableBlog = (props) => {
     const seconds = Math.floor(timeDiff % 60)
     const secondsString = seconds < 10 ? `0${seconds}` : seconds
     
-    const minutes = Math.floor(( timeDiff / 60) %60)
+    const minutes = Math.floor( timeDiff / 60)%60
     const minsString = minutes < 10 ? `0${minutes}` : minutes
     
-    const hours = Math.floor(Math.floor(( timeDiff / 60) %60) /60)%24
+    const hours = Math.floor(Math.floor(( timeDiff / 60) ) /60)%24
     const hoursString = hours < 10 ? `0${hours}` : hours
     
     const days = Math.floor(Math.floor(Math.floor( timeDiff / 60) /60) /24 )
     const daysString = `${days}`
     const mins = Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) 
-    console.log( daysString ,'D', hoursString, 'H Ago', minsString, ':M Ago ', secondsString, ':S')
+
+    console.log('hours passed ----', hours)
 
     if(days > 0)
       return `${days} DAYS AGO`
@@ -85,8 +86,13 @@ export const ReusableBlog = (props) => {
         <div > 
           <div className='flex-row reusable-blog-header'>
             <div className='flex-row flex-center'>
-              <img className='icon-40x' src={blog.user.profileImage} alt="" />
-              <h3>{blog.user.username}</h3>
+              {
+                blog.user &&
+                <>
+                  <img className='icon-40x' src={blog.user.profileImage} alt="" />
+                  <h3>{blog.user.username}</h3>
+                </>
+              }
             </div>
             <div className='flex-row flex-center'>
               <p>{ displayTimeDifference(blog.createdAt) }</p>

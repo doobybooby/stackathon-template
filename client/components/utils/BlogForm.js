@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { postBlog } from '../../store/blog'
 
-export const BlogForm = () => {
+export const BlogForm = (props) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [uploadFile, setUploadFile] = useState();
@@ -17,6 +17,9 @@ export const BlogForm = () => {
   }
 
   const handleClick = ()=> {
+    setTitle(prev => '')
+    setDescription(prev => '')
+    props.setTrigger(false)
     dispatch(postBlog(title, description, uploadFile))
   }
 
@@ -36,7 +39,7 @@ export const BlogForm = () => {
       <div className='blog-form'>
         {
           user &&
-          <form className='flex-col'>
+          <form onSubmit={handleClick} className='flex-col'>
             <div className='flex-row'>
               <img src={user.profileImage} className='icon-40x' alt="" />
               <input style={{width:'100%'}} type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
@@ -48,8 +51,9 @@ export const BlogForm = () => {
               uploadFile && <img className='icon-40x' src={uploadFile}/>
             }
             <textarea onChange={inputDescription} name="" id="" cols="25" rows="3" placeholder='enter description'></textarea>
-            <button onClick={handleClick}>BLOG</button>
-          </form>
+            <button>Blog</button>
+            {/* <button onClick={handleClick}>BLOG</button> */}
+          </form >
         }
       </div>
     </div>

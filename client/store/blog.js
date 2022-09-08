@@ -73,7 +73,7 @@ export default function(state = [], action){
     case SET_BLOGS:
       return action.blogs
     case PUBLISH_BLOG:
-      return state.push(action.blog)
+      return [...state, action.blog]
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
     case DELETE_BLOG:

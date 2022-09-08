@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../store'
@@ -9,12 +9,17 @@ import { AiTwotoneEdit } from 'react-icons/ai'
 import { FiPenTool } from 'react-icons/fi'
 import { AiFillLike } from 'react-icons/ai'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
+import { Popup } from '../Popup'
+
+import {BiMenu } from 'react-icons/bi'
 
 export const ProfilePage = () => {
   const user = useSelector(state => state.auth)
   const blogs = useSelector(state => state.blogs)
-  let usersBlogs = blogs.filter( blog => blog.userId === user.id)
   const dispatch = useDispatch()
+  const [shouldPopUp, setShouldPopUp] = useState(false)
+  console.log('this is the sate of the blog', blogs)
+  let usersBlogs = blogs.filter( blog => blog.userId === user.id)
   
   useEffect(()=> {
     getBlogs(dispatch)
@@ -36,10 +41,10 @@ export const ProfilePage = () => {
                 <AiFillLike /> {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}
               </p>
               <div className='dropdown'>
-                <BiDotsVerticalRounded />
+                <BiMenu size={'2rem'}/>
                 <div className="dropdown-content">
                   <a href="/profile/edit" ><AiTwotoneEdit size={'2em'}/></a>
-
+                  <button onClick={ ()=> setShouldPopUp(prev => !prev) }  >CREATE</button>
                 </div>
               </div>
             </div>
@@ -55,6 +60,9 @@ export const ProfilePage = () => {
           </div>
         </div>
       </div>
+      <Popup trigger={shouldPopUp}  setTrigger={setShouldPopUp}>
+      
+      </Popup>
     </div>
   )
 }

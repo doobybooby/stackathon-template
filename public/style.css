@@ -6,6 +6,7 @@ body {
   font-family: sans-serif;
   padding: 0;
   margin: 0;
+  background-color: #023047;
 }
 
 a {
@@ -225,62 +226,6 @@ nav a {
   border-bottom: 1px solid grey;
 }
 
-[class*='abc']{
-  background-image: url('./abcNews.svg');
-  background-repeat:  space;
-}
-[class*='cnn']{
-  background-image: url('./cnn.svg');
-  background-repeat:  space;
-}
-
-[class*='cbs']{
-  background-image: url('./cbs.svg');
-  background-repeat:  space;
-}
-
-[class*='cnet']{
-  background-image: url('./cnet.svg');
-  background-repeat:  space;
-}
-
-[class*='fox']{
-  /* background-color: white; */
-  background-image: url('./fox.svg');
-  background-repeat:  space;
-}
-
-[class*='today']{
-  /* background-color: white; */
-  background-image: url('./usaToday.svg');
-  background-repeat:  space;
-}
-
-[class*='wall']{
-  /* background-color: white; */
-  background-image: url('./wsj.svg');
-  background-repeat:  space;
-}
-
-[class*='cnbc']{
-  background-color: blue;
-}
-
-[class*='google']{
-  background-image: url('./googleNews.svg');
-  background-repeat:  space;
-}
-
-[class*='washington']{
-  background-image: url('./wp.svg');
-  background-repeat:  space;
-}
-
-[class*='reuters']{
-  background-image: url('./reuters.svg');
-  background-repeat:  space;
-}
-
 
 /*       */
 /* BLOGS */
@@ -289,7 +234,7 @@ nav a {
 .blog-component {
   display: flex;
   align-items: center;
-  background-color: #E0F4FE;
+  /* background-color: #E0F4FE; */
   justify-content: center;
   flex-direction: column;
   padding: 2rem 0;
@@ -305,7 +250,6 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70vh;
   background-color: #023047;
 }
 
@@ -481,6 +425,25 @@ nav a {
   padding: 0;
   margin: 0;
 
+}
+
+
+
+/* POP UP */
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  position: relative;
+  background-color: white;
+  width: 50%;
 }
 
 

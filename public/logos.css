@@ -1,0 +1,53 @@
+
+[class*='abc']{
+  background-image: url('./abcNews.svg');
+  background-repeat:  space;
+}
+[class*='cnn']{
+  background-image: url('./cnn.svg');
+  background-repeat: space;
+}
+
+[class*='cbs']{
+  background-image: url('./cbs.svg');
+  background-repeat:  space;
+}
+
+[class*='cnet']{
+  background-image: url('./cnet.svg');
+  background-repeat:  space;
+}
+
+[class*='fox']{
+  background-image: url('./fox.svg');
+  background-repeat:  space;
+}
+
+[class*='today']{
+  background-image: url('./usaToday.svg');
+  background-repeat:  space;
+}
+
+[class*='wall']{
+  background-image: url('./wsj.svg');
+  background-repeat:  space;
+}
+
+[class*='cnbc']{
+  background-color: blue;
+}
+
+[class*='google']{
+  background-image: url('./googleNews.svg');
+  background-repeat: 45deg space;
+}
+
+[class*='washington']{
+  background-image: url('./wp.svg');
+  background-repeat:  space;
+}
+
+[class*='reuters']{
+  background-image: url('./reuters.svg');
+  background-repeat:  space;
+}
