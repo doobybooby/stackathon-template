@@ -8,6 +8,7 @@ import { ReusableBlog } from '../utils/ReusableBlog'
 import { AiTwotoneEdit } from 'react-icons/ai'
 import { FiPenTool } from 'react-icons/fi'
 import { AiFillLike } from 'react-icons/ai'
+import { BiDotsVerticalRounded } from 'react-icons/bi'
 
 export const ProfilePage = () => {
   const user = useSelector(state => state.auth)
@@ -34,7 +35,13 @@ export const ProfilePage = () => {
               <p style={{padding:'0 1rem'}} >
                 <AiFillLike /> {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}
               </p>
-              <a href="/profile/edit" ><AiTwotoneEdit size={'2em'}/></a>
+              <div className='dropdown'>
+                <BiDotsVerticalRounded />
+                <div className="dropdown-content">
+                  <a href="/profile/edit" ><AiTwotoneEdit size={'2em'}/></a>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>

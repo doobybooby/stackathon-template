@@ -6,6 +6,7 @@ import { BiDownvote, BiUpvote, BiComment, BiShare, BiEdit, BiDotsVerticalRounded
 import { Comments } from '../utils/Comments'
 import { addComment, getComments } from '../../store/comments'
 import { BlogEdit } from '../pages/BlogEdit'
+import { GrDocumentTime } from 'react-icons/gr'
 
 export const ReusableBlog = (props) => {
   const { blog } = props
@@ -50,6 +51,33 @@ export const ReusableBlog = (props) => {
     setAllowEdit(prev => !prev)
   }
 
+  const displayTimeDifference = (blogCreatedAt)=> {
+
+    const timeDiff = ( currentTime.getTime() - new Date(blogCreatedAt) )/1000
+    
+    const seconds = Math.floor(timeDiff % 60)
+    const secondsString = seconds < 10 ? `0${seconds}` : seconds
+    
+    const minutes = Math.floor(( timeDiff / 60) %60)
+    const minsString = minutes < 10 ? `0${minutes}` : minutes
+    
+    const hours = Math.floor(Math.floor(( timeDiff / 60) %60) /60)%24
+    const hoursString = hours < 10 ? `0${hours}` : hours
+    
+    const days = Math.floor(Math.floor(Math.floor( timeDiff / 60) /60) /24 )
+    const daysString = `${days}`
+    const mins = Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) 
+    console.log( daysString ,'D', hoursString, 'H Ago', minsString, ':M Ago ', secondsString, ':S')
+
+    if(days > 0)
+      return `${days} DAYS AGO`
+    else if(hours > 0)
+      return `${hours} HOURS AGO`
+    else if(mins > 0)
+      return `${minutes} MINS AGO`
+    else return `${seconds} SECS AGO`
+  }
+
   return (
     <div className='reusable-blog-card flex-col'>
       {
@@ -60,17 +88,19 @@ export const ReusableBlog = (props) => {
               <img className='icon-40x' src={blog.user.profileImage} alt="" />
               <h3>{blog.user.username}</h3>
             </div>
-            <p>{ Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)/60) }H { Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) }Min AGO</p>
-            <div>
-              <div className="dropdown">
-                <BiDotsVerticalRounded />
-                {
-                  blog.userId === user.id &&
-                    <div className="dropdown-content">
-                      <BiEdit onClick={()=> setAllowEdit(prev => !prev)} size={'2rem'} />
-                      <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
-                    </div>
-                }
+            <div className='flex-row flex-center'>
+              <p>{ displayTimeDifference(blog.createdAt) }</p>
+              <div>
+                <div className="dropdown">
+                  <BiDotsVerticalRounded />
+                  {
+                    blog.userId === user.id &&
+                      <div className="dropdown-content">
+                        <BiEdit onClick={()=> setAllowEdit(prev => !prev)} size={'2rem'} />
+                        <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
+                      </div>
+                  }
+                </div>
               </div>
             </div>
           </div>

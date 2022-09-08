@@ -56,11 +56,11 @@ input[type="file"] {
 
 .nav-component {
   background-color: #023047;
-  color: #8ECAE6;
+  color: #E0F4FE;
 }
 
 nav a {
-  color: #8ECAE6;
+  color: #E0F4FE;
   display: inline-block;
   margin: 1em;
   text-transform: uppercase;
@@ -481,4 +481,13 @@ nav a {
   padding: 0;
   margin: 0;
 
+}
+
+
+
+/* Footer */
+
+.footer-component {
+  background-color: #023047;
+  color: #E0F4FE;
 }

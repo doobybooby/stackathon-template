@@ -19,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 {/* <Link to="/news">News</Link> */}
                 <Link to="/blogs" className='flex-col'><ImBook />Blogs</Link>
                 <div className="dropdown">
-                  <Link className='flex-col'><RiAccountCircleFill />Account</Link>
+                  <p className='flex-col'><RiAccountCircleFill />Account</p>
                   <div className="dropdown-content">
                     <a href="/profile">Profile</a>
                     <a href="/profile/edit">Edit</a>
