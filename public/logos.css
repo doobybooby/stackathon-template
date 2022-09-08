@@ -34,7 +34,8 @@
 }
 
 [class*='cnbc']{
-  background-color: blue;
+  background-image: url('./cnbc.svg');
+  background-repeat:  space;
 }
 
 [class*='google']{
@@ -49,5 +50,20 @@
 
 [class*='reuters']{
   background-image: url('./reuters.svg');
+  background-repeat:  space;
+}
+
+[class*='yahoo']{
+  background-image: url('./yahoo.svg');
+  background-repeat:  space;
+}
+
+[class*='youtube']{
+  background-image: url('./youtube.svg');
+  background-repeat:  space;
+}
+
+[class*='verge']{
+  background-image: url('./verge.svg');
   background-repeat:  space;
 }

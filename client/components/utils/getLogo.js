@@ -9,10 +9,16 @@ import UsaTodayLogo from '../../../public/usaToday.svg'
 import GoogleNewsLogo from '../../../public/googleNews.svg'
 import WpLogo from '../../../public/wp.svg'
 import ReutersLogo from '../../../public/reuters.svg'
+import CnbcLogo from '../../../public/cnbc.svg'
+import YahooLogo from '../../../public/yahoo.svg'
+import YoutubeLogo from '../../../public/youtube.svg'
+import VergeLogo from '../../../public/verge.svg'
 
 export const getLogo = function(id, name){
   if(id && id.includes('cnn')) 
     return <CnnLogo />
+  if((id && (id.includes('cnbc') )) || name.includes('cnbc'))
+    return <CnbcLogo />
   if(id && id.includes('cbs')) 
     return <CbsLogo />
   if((id && (id.includes('abc') )) || name.includes('abc'))
@@ -31,4 +37,10 @@ export const getLogo = function(id, name){
     return <WpLogo />
   if((id && (id.includes('reuters') )) || name.includes('reuters'))
     return <ReutersLogo />
+  if((id && (id.includes('yahoo') )) || name.includes('yahoo'))
+    return <YahooLogo />
+  if((id && (id.includes('youtube') )) || name.includes('youtube'))
+    return <YoutubeLogo />
+  if((id && (id.includes('verge') )) || name.includes('verge'))
+    return <VergeLogo />
 }

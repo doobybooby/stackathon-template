@@ -18,7 +18,7 @@ export const Root = () => {
         {
           news[0] 
             ? news.map(article => { 
-              console.log(article.source.name)
+              console.log(article.source)
                 return article.urlToImage && (
                   <li key={article.url} className={`article ${article.source.name.toLowerCase()} ${article.source.id}`}>
                     <div className='flex-col article-card'>

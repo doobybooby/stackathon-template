@@ -8,8 +8,9 @@ import { ReusableBlog } from '../utils/ReusableBlog'
 import { AiTwotoneEdit } from 'react-icons/ai'
 import { FiPenTool } from 'react-icons/fi'
 import { AiFillLike } from 'react-icons/ai'
-import { BiDotsVerticalRounded } from 'react-icons/bi'
+import { BsFillPlusSquareFill } from 'react-icons/bs'
 import { Popup } from '../Popup'
+
 
 import {BiMenu } from 'react-icons/bi'
 
@@ -40,13 +41,7 @@ export const ProfilePage = () => {
               <p style={{padding:'0 1rem'}} >
                 <AiFillLike /> {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}
               </p>
-              <div className='dropdown'>
-                <BiMenu size={'2rem'}/>
-                <div className="dropdown-content">
-                  <a href="/profile/edit" ><AiTwotoneEdit size={'2em'}/></a>
-                  <button onClick={ ()=> setShouldPopUp(prev => !prev) }  >CREATE</button>
-                </div>
-              </div>
+              <BsFillPlusSquareFill size={'2rem'} onClick={ ()=> setShouldPopUp(prev => !prev) }  />
             </div>
           </div>
         </div>

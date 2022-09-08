@@ -50,6 +50,28 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   </div>
 )
 
+let lastScroll = 0
+window.addEventListener('scroll', ()=> {
+  const currentScroll = window.pageYOffset
+
+  if( currentScroll <= 0 ) {
+    const nav = document.querySelector('.nav-component')
+    nav.classList.remove('scroll-up')
+  }
+  if( currentScroll > lastScroll && !document.querySelector('.scroll-down')) {
+    const nav = document.querySelector('.nav-component')
+    nav.classList.remove('scroll-up')
+    nav.classList.add('scroll-down')
+  }
+  if( currentScroll < lastScroll && document.querySelector('.scroll-down')) {
+    const nav = document.querySelector('.nav-component')
+    nav.classList.remove('scroll-down')
+    nav.classList.add('scroll-up')
+  }
+
+  lastScroll = currentScroll
+})
+
 /**
  * CONTAINER
  */
