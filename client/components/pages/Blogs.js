@@ -15,15 +15,16 @@ export const Blogs = () => {
 
   return (
     <div className='blog-component flex-col'>
-      <BlogForm />
-      {
-        blogs[0] ? 
-          blogs.sort((a,b) => b.id - a.id).map( blog => 
-            <ReusableBlog key={blog.id} blog={blog} />
-            
-          ) :
-          null
-      }
+      <div>
+        {/* <BlogForm /> */}
+        {
+          blogs[0] && 
+            blogs.sort((a,b) => b.id - a.id).map( blog => 
+              <ReusableBlog key={blog.id} blog={blog} />
+            ) 
+        }
+
+      </div>
     </div>
   )
 }

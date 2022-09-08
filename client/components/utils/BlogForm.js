@@ -32,24 +32,26 @@ export const BlogForm = () => {
 
 
   return (
-    <div>
-      {
-        user &&
-        <form className='flex-col'>
-          <div className='flex-row'>
-            <img src={user.profileImage} className='icon-40x' alt="" />
-            <input type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
-          </div>
-          <label htmlFor="">Image:
-            <input type="file" onChange={inputImage}/>
-          </label>
-          {
-            uploadFile && <img className='icon-40x' src={uploadFile}/>
-          }
-          <textarea onChange={inputDescription} name="" id="" cols="25" rows="3" placeholder='enter description'></textarea>
-          <button onClick={handleClick}>BLOG</button>
-        </form>
-      }
+    <div className='blog-form-component'>
+      <div className='blog-form'>
+        {
+          user &&
+          <form className='flex-col'>
+            <div className='flex-row'>
+              <img src={user.profileImage} className='icon-40x' alt="" />
+              <input style={{width:'100%'}} type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
+            </div>
+            <label htmlFor="">Image:
+              <input type="file" onChange={inputImage}/>
+            </label>
+            {
+              uploadFile && <img className='icon-40x' src={uploadFile}/>
+            }
+            <textarea onChange={inputDescription} name="" id="" cols="25" rows="3" placeholder='enter description'></textarea>
+            <button onClick={handleClick}>BLOG</button>
+          </form>
+        }
+      </div>
     </div>
   )
 }

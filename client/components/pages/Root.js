@@ -10,6 +10,7 @@ import AbcLogo from '../../../public/abcNews.svg'
 import UsaTodayLogo from '../../../public/usaToday.svg'
 import GoogleNewsLogo from '../../../public/googleNews.svg'
 import WpLogo from '../../../public/wp.svg'
+import ReutersLogo from '../../../public/reuters.svg'
 
 export const Root = () => {
 
@@ -39,6 +40,8 @@ export const Root = () => {
     return <WsjLogo />
     if((id && (id.includes('washington') )) || name.includes('washington'))
       return <WpLogo />
+    if((id && (id.includes('reuters') )) || name.includes('reuters'))
+      return <ReutersLogo />
   }
 
   return (
@@ -47,17 +50,18 @@ export const Root = () => {
         {
           news[0] 
             ? news.map(article => { 
+              console.log(article.source.name)
                 return article.urlToImage && (
                   <li key={article.url} className={`article ${article.source.name.toLowerCase()} ${article.source.id}`}>
                     <div className='flex-col article-card'>
                       <div className='flex-row article-header'>
-                        <div className='flex-col' style={{textAlign:'center', alignItems: 'center'}}>
+                        <div className='flex-row' style={{padding:'1rem', alignItems: 'center'}}>
                           { 
                             getLogo( article.source.id, article.source.name.toLowerCase() )
                               ? getLogo( article.source.id, article.source.name.toLowerCase() )
                               : <h2>{article.source.name}</h2>
                           } 
-                          <h3>{(article.title.split(' - ')[0])}</h3>
+                          <h3 style={{paddingLeft:'1rem'}}>{(article.title.split(' - ')[0])}</h3>
                         </div>
                       </div>
                       <img src={article.urlToImage} with='100%' alt="" />

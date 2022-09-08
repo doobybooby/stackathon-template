@@ -19,6 +19,8 @@ label {
 .icon-40x{
   width: 40px;
   height: 40px;
+  border-radius: 25px;
+  margin-right: 1rem;
 }
 
 .flex-row {
@@ -33,6 +35,10 @@ label {
 .flex-center {
   justify-content: center;
   align-items: center;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 
@@ -170,8 +176,13 @@ nav a {
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: #023047;
+  height: 70vh;
 }
 
+.edit-user-profile-component input {
+  padding: .5rem 1rem;
+}
 
 
 /*                 */
@@ -212,10 +223,6 @@ nav a {
 .article-description {
   padding: .5rem 1rem;
   border-bottom: 1px solid grey;
-}
-
-[class*='reuter']{
-  background-color: black;
 }
 
 [class*='abc']{
@@ -269,6 +276,11 @@ nav a {
   background-repeat:  space;
 }
 
+[class*='reuters']{
+  background-image: url('./reuters.svg');
+  background-repeat:  space;
+}
+
 
 /*       */
 /* BLOGS */
@@ -277,9 +289,33 @@ nav a {
 .blog-component {
   display: flex;
   align-items: center;
-  background-color: #4285F4;
+  background-color: #E0F4FE;
   justify-content: center;
   flex-direction: column;
+  padding: 2rem 0;
+}
+
+.blog-component  > * {
+  max-width: 600px;
+}
+
+/* Blog Form */
+
+.blog-form-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  background-color: #023047;
+}
+
+.blog-form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.blog-form > form{
+  background-color: #0BA9F9;
 }
 
 .blog-wrapper {
@@ -294,20 +330,19 @@ nav a {
 
 
 .reusable-blog-card {
-  background-color: #046DA1;
+  background-color: #FFFFFF;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  width: 470px
-}
-.reusable-blog-card {
-  margin-bottom: 1rem;
+  width: 470px;
+  margin: .5rem 0;
 }
 
 .reusable-blog-header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 1rem;
 }
 
 .reusable-blog-title {
@@ -319,16 +354,13 @@ nav a {
   width: 470px;
 }
 
-.profile-blogs-wrapper {
-  background-color: #F4B400;
-  align-items: center;
-  
-}
-
 .profile-blog-section {
   width: 100%;
   
 }
+
+
+/* END OF BLOGS and reusable blog */
 
 
 .like-comment-share{
@@ -356,18 +388,21 @@ nav a {
 /*              */
 
 .user-profile-component {
-  background-color: #4285F4;
+  justify-content: space-around;
   width: 100%;
-
+  padding: 1rem;
+  background-color: #023047;
 }
 
 .user-profile-card {
-  background-color: #219EBC;
-  padding: 2rem ;
+  padding: 0 1rem;
+  background-color: #85D4FC;
+  
 }
 
 .user-profile-card-header{
   align-items: center;
+  justify-content: space-between;
 }
 
 /*               */
