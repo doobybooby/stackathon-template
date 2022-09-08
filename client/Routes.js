@@ -38,13 +38,14 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route path='/' exact component={ Landing } />
+            <Route path="/home" component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/blogs/:id" component={BlogDetails} />
             <Route path="/blogs" component={Blogs} />
             <Route path="/root" component={Root} />
             <Route path="/account" component={NavAccount} />
+            <Route path='/' exact component={ Landing } />
           </Switch>
         )}
       </div>

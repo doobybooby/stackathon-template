@@ -17,9 +17,9 @@ export const Landing = () => {
   }
 
   return (
-    <div>
-      <div className='landing-component'>
-        <h1>Nonya News</h1>
+    <div className='flex-col' style={{justifyContent:'center', alignItems:'center'}}>
+      <Root />
+      {/* <div className='landing-component'>
         <GoogleSearch/>
         <div className='flex-row'>
           <button onClick={()=> changeDisplay('news')}>NEWS</button>
@@ -31,7 +31,7 @@ export const Landing = () => {
       }
       {
         display === 'blogs' && <Blogs />
-      }
+      } */}
     </div>
   )
 }

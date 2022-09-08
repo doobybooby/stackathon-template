@@ -16,6 +16,11 @@ label {
   display: block;
 }
 
+.icon-40x{
+  width: 40px;
+  height: 40px;
+}
+
 .flex-row {
   display: flex;
 }
@@ -31,10 +36,10 @@ label {
 }
 
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 
 
@@ -91,26 +96,54 @@ nav a {
 /*         */
 
 .login {
-  background-color: #046DA1;
+  background-color: #023047;
 }
+
+.login > div, .signup > div > button {
+  background-color: #035883;
+}
+
 .signup {
-  background-color:#035883
+  background-color:#023047
+}
+
+.signup > div, .login > div > button {
+  background-color: #0BA9F9;
+}
+
+.login > div > .auth-form button,
+.signup > div > .auth-form button
+{
+  border: 1px solid #FB8500;
+  background-color: rgba(251, 133, 0, .5);
 }
 
 .account-page {
   justify-content: center;
   align-items: center;
-  height: 70vh;
   text-align: center;
-  font-size: 2rem;
+  height: 70vh;
 }
 
+.auth-form input {
+  padding: .5rem 1rem;
+  margin: 1rem;
+  width: 80%;
+}
+
+.account-page > div {
+  padding: 1.5rem;
+}
+
+.account-page > div button {
+  padding: .5rem 1rem;
+  width: 80%;
+}
 
 .auth-form-submit-button {
-  font-size: 2rem;
-  padding: 1rem;
+  padding: .5rem 1rem;
   background-color: #FB8500;
-  width: 100%;
+  width: 80%;
 }
 
 
@@ -156,21 +189,20 @@ nav a {
   flex-direction: column;
   align-items: center;
   list-style: none;
-  padding: 0 1rem;
-  background-color: #023047
+  padding: 0 2rem;
+  margin-top: 1rem;
+  background-color: white;
 }
 
 .article-card {
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
   background-color: white;
-  border-top: black 1px solid;
 }
 
 
 .article-header {
-  background-color: black;
-  color: white;
+  background-color: white;
 }
 
 .article-header > img{
@@ -179,15 +211,48 @@ nav a {
 
 .article-description {
   padding: .5rem 1rem;
+  border-bottom: 1px solid grey;
 }
 
 [class*='reuter']{
   background-color: black;
 }
 
+[class*='abc']{
+  background-image: url('./abcNews.svg');
+  background-repeat:  space;
+}
 [class*='cnn']{
-  background-color: red;
-  background-repeat: repeat;
+  background-image: url('./cnn.svg');
+  background-repeat:  space;
+}
+
+[class*='cbs']{
+  background-image: url('./cbs.svg');
+  background-repeat:  space;
+}
+
+[class*='cnet']{
+  background-image: url('./cnet.svg');
+  background-repeat:  space;
+}
+
+[class*='fox']{
+  /* background-color: white; */
+  background-image: url('./fox.svg');
+  background-repeat:  space;
+}
+
+[class*='today']{
+  /* background-color: white; */
+  background-image: url('./usaToday.svg');
+  background-repeat:  space;
+}
+
+[class*='wall']{
+  /* background-color: white; */
+  background-image: url('./wsj.svg');
+  background-repeat:  space;
 }
 
 [class*='cnbc']{
@@ -195,7 +260,13 @@ nav a {
 }
 
 [class*='google']{
-  background: linear-gradient(#4285F4, #DB4437, #F4B400, #0F9D58);
+  background-image: url('./googleNews.svg');
+  background-repeat:  space;
+}
+
+[class*='washington']{
+  background-image: url('./wp.svg');
+  background-repeat:  space;
 }
 
 
@@ -309,7 +380,6 @@ nav a {
     flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70vh;
   margin: 0;
 }
 
@@ -348,7 +418,7 @@ nav a {
 
 .gsc-control-wrapper-cse {
   /* background-color: black; */
-  padding: 1rem;
+  /* padding: 1rem; */
   margin: 0rem;
 }
 

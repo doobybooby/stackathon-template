@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { postBlog } from '../../store/blog'
 
 export const BlogForm = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [uploadFile, setUploadFile] = useState();
-
+  const user = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   const inputName = (e)=> {
@@ -21,6 +21,7 @@ export const BlogForm = () => {
   }
 
   const inputImage = (ev) => {
+    console.log('tryig to input an image')
     const file = ev.target.files[0];
     const reader = new FileReader();
     reader.addEventListener('load', () => {
@@ -32,18 +33,23 @@ export const BlogForm = () => {
 
   return (
     <div>
-      <form >
-        <label htmlFor="">Title:
-          <input type="text" onChange={inputName}/>
-        </label>
-        <label htmlFor="">Description:
-          <input type="text" onChange={inputDescription}/>
-        </label>
-        <label htmlFor="">Image:
-          <input type="file" onChange={inputImage}/>
-        </label>
-        <button onClick={handleClick}>BLOG</button>
-      </form>
+      {
+        user &&
+        <form className='flex-col'>
+          <div className='flex-row'>
+            <img src={user.profileImage} className='icon-40x' alt="" />
+            <input type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
+          </div>
+          <label htmlFor="">Image:
+            <input type="file" onChange={inputImage}/>
+          </label>
+          {
+            uploadFile && <img className='icon-40x' src={uploadFile}/>
+          }
+          <textarea onChange={inputDescription} name="" id="" cols="25" rows="3" placeholder='enter description'></textarea>
+          <button onClick={handleClick}>BLOG</button>
+        </form>
+      }
     </div>
   )
 }

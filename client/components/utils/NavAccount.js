@@ -13,19 +13,22 @@ export const NavAccount = () => {
 
   return (
     <div className={`account-page ${loginStatus ? 'login' : 'signup'} flex-col`}>
-      <div className='flex-row'>
-        <button onClick={()=> handleChange('login')}><h3>Log-in</h3></button>
-        <button onClick={()=> handleChange('signup')}><h3>Sign-up</h3></button>
-      </div>
-
       {
-        loginStatus && <Login />
+        loginStatus ?
+          <div>
+            <h4>Welcome Back!</h4>
+            <Login />
+            <p>or</p>
+            <button onClick={()=>handleChange('signup')}>Sign up</button>
+          </div>
+          :
+          <div>
+            <h4>Join Us!</h4>
+            <Signup />
+            <p>or</p>
+            <button onClick={()=>handleChange('login')}>Login</button>
+          </div>
       }
-      
-      {
-        !loginStatus && <Signup />
-      }
-        
     </div>
   )
 }

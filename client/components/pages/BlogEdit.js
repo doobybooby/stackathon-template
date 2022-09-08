@@ -6,7 +6,6 @@ import { modifyBlog } from '../../store/blog'
 
 export const BlogEdit = (props) => {
   const user = useSelector(state => state.auth)
-  console.log('-----', user)
   const {blog} = props
   const {onClick} = props
   const [editBlogForm, setEditBlogForm] = useState({

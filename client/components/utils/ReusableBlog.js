@@ -9,13 +9,14 @@ import { BlogEdit } from '../pages/BlogEdit'
 
 export const ReusableBlog = (props) => {
   const { blog } = props
-  const currentTime = new Date()
+  const user = useSelector(state => state.auth)
+  const comments = useSelector(state => state.comments)
+  const dispatch = useDispatch()
   const [ commentInput, setCommentInput ] = useState('')
   const [ shouldDisplayComment, setShouldDisplayComment ] = useState(false)
-  const dispatch = useDispatch()
-  const comments = useSelector(state => state.comments)
-  const blogComments = comments.filter(comment => comment.blogId === blog.id)
   const [allowEdit, setAllowEdit] = useState(false)
+  const blogComments = comments.filter(comment => comment.blogId === blog.id)
+  const currentTime = new Date()
 
   const decrementRating = (blog)=> {
     dispatch(updateBlogRating(blog, -1))
@@ -59,12 +60,15 @@ export const ReusableBlog = (props) => {
               <img width='15%' src={blog.user.profileImage} alt="" />
               <h3>{blog.user.username}</h3>
             </div>
-            <div>
-              <button onClick={()=> setAllowEdit(prev => !prev)}>
-                <BiEdit size={'2rem'} />
-              </button>
-              <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
-            </div>
+            {
+              blog.userId === user.id &&
+              <div>
+                <button onClick={()=> setAllowEdit(prev => !prev)}>
+                  <BiEdit size={'2rem'} />
+                </button>
+                <AiTwotoneDelete size={'2rem'} onClick={()=> removeBlog(blog)} />
+              </div>
+            }
           </div>
           <h3>{ blog.title }</h3>
           <p>{ Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)/60) }H { Math.floor((Math.floor((Math.abs(currentTime - new Date(blog.createdAt)))/1000)/60)%60) }Min AGO</p>

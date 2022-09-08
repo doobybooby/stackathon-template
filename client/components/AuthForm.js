@@ -13,15 +13,13 @@ const AuthForm = props => {
       <form onSubmit={handleSubmit} name={name} className='flex-col'>
         <div>
           <label htmlFor="username">
-            <small>Username</small>
+            <input name="username" type="text" placeholder='Username'/>
           </label>
-          <input name="username" type="text" />
         </div>
         <div>
           <label htmlFor="password">
-            <small>Password</small>
+            <input name="password" type="password" placeholder='Password' />
           </label>
-          <input name="password" type="password" />
         </div>
         <div>
           <button type="submit" className='auth-form-submit-button'>{displayName}</button>
