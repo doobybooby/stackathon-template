@@ -13,6 +13,14 @@ a {
   text-decoration: none;
 }
 
+.m-0 {
+  margin: 0;
+}
+
+.p-0 {
+  padding: 0;
+}
+
 label {
   display: block;
 }
@@ -22,6 +30,10 @@ label {
   height: 40px;
   border-radius: 25px;
   margin-right: 1rem;
+}
+
+.pic-400x {
+  width: 400px;
 }
 
 .flex-row {
@@ -266,6 +278,7 @@ nav a {
   align-items: center;
   justify-content: center;
   background-color: #023047;
+  padding: 2rem;
 }
 
 .blog-form {
@@ -273,8 +286,18 @@ nav a {
   max-width: 600px;
 }
 
+.blog-form > *, .blog-form > form > *{
+  margin: .5rem;
+}
+
 .blog-form > form{
-  background-color: #0BA9F9;
+  /* background-color: #0BA9F9; */
+  width: 100%;
+}
+
+.blog-form-submit-button {
+  padding: .5rem 0;
+  background-color: #FB8500;
 }
 
 .blog-wrapper {
@@ -442,7 +465,10 @@ nav a {
 
 }
 
-
+.gsc-modal-background-image {
+  z-index: 55;
+  position: absolute;
+}
 
 /* POP UP */
 .popup {
@@ -459,6 +485,8 @@ nav a {
   position: relative;
   background-color: white;
   width: 50%;
+  background-color: #023047;
+  padding: 1rem;
 }
 
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { postBlog } from '../../store/blog'
+import {MdAddPhotoAlternate} from 'react-icons/md'
+
 
 export const BlogForm = (props) => {
   const [title, setTitle] = useState('')
@@ -36,7 +38,7 @@ export const BlogForm = (props) => {
 
   return (
     <div className='blog-form-component'>
-      <div className='blog-form'>
+      <div className='blog-form flex-col flex-center'>
         {
           user &&
           <form onSubmit={handleClick} className='flex-col'>
@@ -44,14 +46,15 @@ export const BlogForm = (props) => {
               <img src={user.profileImage} className='icon-40x' alt="" />
               <input style={{width:'100%'}} type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
             </div>
-            <label htmlFor="">Image:
-              <input type="file" onChange={inputImage}/>
-            </label>
             {
-              uploadFile && <img className='icon-40x' src={uploadFile}/>
+              uploadFile && <img width='100%' src={uploadFile}/>
             }
-            <textarea onChange={inputDescription} name="" id="" cols="25" rows="3" placeholder='enter description'></textarea>
-            <button>Blog</button>
+            <textarea onChange={inputDescription} name="" id="" cols="25" rows="5" placeholder='enter description'></textarea>
+            <label htmlFor="file-upload" className='flex-row flex-center'>
+              <input id='file-upload' type="file" onChange={inputImage}/>
+              Add A Cover Photo<MdAddPhotoAlternate size={'2rem'}/>
+            </label>
+            <button className='blog-form-submit-button'>Blog</button>
             {/* <button onClick={handleClick}>BLOG</button> */}
           </form >
         }

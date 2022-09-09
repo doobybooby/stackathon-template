@@ -48,9 +48,10 @@ export const ProfilePage = () => {
         <div className='profile-blog-section'>
           <div className='profile-blogs-wrapper flex-col'>
             {
-              usersBlogs &&
-              usersBlogs.sort((a,b)=>  Date.parse(b.createdAt) - Date.parse(a.createdAt))
-                .map( blog => <ReusableBlog  key={blog.id} blog={blog} /> )
+              usersBlogs.length > 0
+                ? usersBlogs.sort((a,b)=>  Date.parse(b.createdAt) - Date.parse(a.createdAt))
+                    .map( blog => <ReusableBlog  key={blog.id} blog={blog} /> )
+                : <p style={{textAlign:'center', background:'#F2F5FA', padding: '1rem'}}>User doesn't have any blog</p>
             }
           </div>
         </div>

@@ -6,6 +6,7 @@ import { AiFillHome } from 'react-icons/ai'
 import { RiAccountCircleFill } from 'react-icons/ri'
 import {ImNewspaper, ImBook, ImSearch} from 'react-icons/im'
 import { GoogleSearch } from './utils/GoogleSearch'
+import { CSE } from './utils/CSE'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className='nav-component'>
@@ -15,33 +16,35 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           ? (
             <div style={{display:'flex', justifyContent:'space-around', alignItems: 'center'}}>
               <div className='flex-row'>
-                <Link to="/home" className='flex-col'><ImNewspaper/>News</Link>
+                <Link to="/home" className='flex-col'><ImNewspaper/></Link>
                 {/* <Link to="/news">News</Link> */}
-                <Link to="/blogs" className='flex-col'><ImBook />Blogs</Link>
+                <Link to="/blogs" className='flex-col'><ImBook /></Link>
                 <div className="dropdown">
-                  <p className='flex-col'><RiAccountCircleFill />Account</p>
+                  <p className='flex-col'><RiAccountCircleFill /></p>
                   <div className="dropdown-content">
                     <a href="/profile">Profile</a>
                     <a href="/profile/edit">Edit</a>
-                    <a href="/profile/create_blog">Create Blog</a>
                     <a href="/" onClick={handleClick}>
                       Logout
                     </a>
                   </div>
                 </div>
               </div>
-              <h3>{displayTime()}</h3>
-              <GoogleSearch />
+              <h3>Nonya News</h3>
+              {/* <h3>{displayTime()}</h3> */}
+              {/* <GoogleSearch /> */}
+              <CSE />
             </div>
           ) 
           : (
             <div style={{display:'flex', justifyContent:'space-between'}}>
               <div className='flex-row'>
-                <Link to="/home" className='flex-col'><ImNewspaper/>News</Link>
-                <Link to="/blogs" className='flex-col'><ImBook />Blogs</Link>
-                <Link to="/account" className='flex-col'><RiAccountCircleFill />Account</Link>
+                <Link to="/home" className='flex-col'>News</Link>
+                <Link to="/blogs" className='flex-col'>Blogs</Link>
+                <Link to="/account" className='flex-col'>Account</Link>
               </div>
-              <h3>{displayTime()}</h3>
+              <h3>Nonya News</h3>
+              {/* <h3>{displayTime()}</h3> */}
               <GoogleSearch />
             </div>
           )
