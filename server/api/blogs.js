@@ -82,7 +82,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.put('/rating', isLoggedIn, async (req,res, next)=> {
+router.put('/rating', async (req,res, next)=> {
   const blog = await Blog.findOne({
     where: {
       id:req.body.blog.id

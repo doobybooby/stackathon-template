@@ -33,9 +33,12 @@ export const Comment = (props) => {
 
   return (
     <div>
-      <p>{ reply.message }</p>
-      <button onClick={displayThreads}>Show Threads</button>
-      <button onClick={queryResponse}>Reply</button>
+      <div className='flex-row'>
+        <p>{ reply.message }</p>
+        <button onClick={displayThreads}>Show Threads</button>
+        <button onClick={queryResponse}>Reply</button>
+
+      </div>
       <ul>
         {
           shoudDisplayThread &&

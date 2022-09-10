@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import { GoogleSearch } from './utils/GoogleSearch'
-import { CSE } from './utils/CSE'
-import {FaSearch} from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className='nav-component'>
@@ -16,7 +15,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               <h3>Nonya News</h3>
               <div className='flex-row'>
                 <Link to="/home" className='flex-col'>NEWS</Link>
-                {/* <Link to="/news">News</Link> */}
                 <Link to="/blogs" className='flex-col'>BLOGS</Link>
                 <div className="dropdown">
                   <p className='flex-col'>ACCOUNT</p>
@@ -40,14 +38,19 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             </div>
           ) 
           : (
-            <div style={{display:'flex', justifyContent:'space-around'}}>
-              <div className='flex-row'>
+            <div style={{ display:'flex', justifyContent:'space-around', alignItems:'center' }}>
+              <div className='flex-row flex-center' style={{ flex:'1' }} >
+                <h3 >Nonya News</h3>
+              </div>
+              <div className='flex-row flex-center' style={{ flex:'1'}}>
                 <Link to="/home" className='flex-col'>News</Link>
                 <Link to="/blogs" className='flex-col'>Blogs</Link>
                 <Link to="/account" className='flex-col'>Log In</Link>
               </div>
-              {/* <h3>{displayTime()}</h3> */}
-              <GoogleSearch style={{width:'100rem'}}/>
+              <div style={{ flex:'1' }}>
+                <GoogleSearch />
+
+              </div>
             </div>
           )
       }

@@ -12,43 +12,47 @@ export const Root = () => {
     getNews(dispatch)
   },[])
 
+
+  const newsToBlog = () => {
+    console.log('can you mkae this news post into a blog?')
+  }
+
   return (
-    <div style={{  paddingTop: '5rem'}}>
-      <h1 style={{color:'white', textAlign:'center'}}>LATEST NEWS</h1>
+    <div style={{ paddingTop:'5rem' }}>
+      <h1 style={{ color:'white', textAlign:'center'}}>LATEST NEWS</h1>
       <ul className='articles-wrapper'>
         {
           news[0] 
-            ? news.map(article => { 
-              console.log(article.source)
+            ? news.map( article => { 
+              // console.log(article.source)
                 return article.urlToImage && (
                   <li key={article.url} className={`article ${article.source.name.toLowerCase()} ${article.source.id}`}>
                     <div className='flex-col article-card'>
                       <div className='flex-row article-header'>
-                        <div className='flex-row' style={{padding:'1rem', alignItems: 'center'}}>
+                        <div className='flex-row' style={{ padding:'1rem', alignItems: 'center' }}>
                           { 
                             getLogo( article.source.id, article.source.name.toLowerCase() )
                               ? getLogo( article.source.id, article.source.name.toLowerCase() )
                               : <h2>{article.source.name}</h2>
                           } 
-                          <h3 style={{paddingLeft:'1rem'}}>{(article.title.split(' - ')[0])}</h3>
+                          <h3 style={{ paddingLeft:'1rem' }}>{( article.title.split(' - ')[0] )}</h3>
                         </div>
                       </div>
                       <img src={article.urlToImage} with='100%' alt="" />
                       <div className='flex-col article-description'>
                         <p>{article.description}</p>
                         <a href={article.url}>Read More</a>
-                        <p>Published At: {new Date(article.publishedAt).toLocaleTimeString()} {new Date(article.publishedAt).toLocaleDateString()}</p>
+                        <p>Published At: { new Date(article.publishedAt).toLocaleTimeString() }{ new Date(article.publishedAt).toLocaleDateString() }</p>
                         <p>BY: {article.author}</p>
                       </div>
                     </div>
+                    <button onClick={newsToBlog} style={{ alignSelf:'flex-end' }}>BLOG THIS</button>
                   </li>
                 )}
               )
             : <p>loading...</p>
         }
-
       </ul>
-
     </div>
   )
 }

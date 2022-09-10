@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteBlog, updateBlogRating, modifyBlog } from '../../store/blog'
 import { AiTwotoneDelete } from 'react-icons/ai'
 import { BiDownvote, BiUpvote, BiComment, BiShare, BiEdit, BiDotsVerticalRounded } from 'react-icons/bi'
-import { Comments } from '../utils/Comments'
 import { Comment } from '../utils/Comment'
 import { addComment, getComments } from '../../store/comments'
 import { BlogEdit } from '../pages/BlogEdit'
@@ -38,6 +37,8 @@ export const ReusableBlog = (props) => {
   const displayComment = ()=> {
     setShouldDisplayComment(prev => !prev)
     fetchComments(commentId)
+    setCommentId(blog.id)
+    setIsThread(false)
   }
 
   const handleInput = (ev) => {
@@ -125,11 +126,12 @@ export const ReusableBlog = (props) => {
             <input id={`replyInput-${blog.id}`} type="text" value={commentInput} onChange={handleInput} placeholder='Add comment...'/>
             <button onClick={submitComment} >ADD</button>
           </form>
+          <ul>
           {
             shouldDisplayComment &&
-            blogComments.map(reply => <Comment key={reply.id} reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFocus} setIsThread={setIsThread}/>)
-            // blogComments.map(reply => <Comments key={reply.id} reply={reply} setCommentInput={setCommentInput} setCommentId={setCommentId} setShouldSubmitComment={setShouldSubmitComment}/>)
+            blogComments.map(reply => <li key={reply.id} ><Comment reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFocus} setIsThread={setIsThread}/></li>)
           }
+          </ul>
         </div>
         : <BlogEdit blog={blog} onClick={toggleShowHide}/>
       }

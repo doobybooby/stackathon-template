@@ -132,8 +132,12 @@ nav a {
 .login {
   background-color: #023047;
 }
+.signup > div > button {
+  background-color:  rgb(3, 88, 131, .2);
+  border: 1px solid rgb(3, 88, 131);
+}
 
-.login > div, .signup > div > button {
+.login > div {
   background-color: #035883;
 }
 
@@ -141,7 +145,11 @@ nav a {
   background-color:#023047
 }
 
-.signup > div, .login > div > button {
+.login > div > button {
+  border: 1px solid rgb(11, 169, 249);
+  background-color:  rgb(11, 169, 249, .1);
+}
+.signup > div{
   background-color: #0BA9F9;
 }
 
@@ -149,7 +157,7 @@ nav a {
 .signup > div > .auth-form button
 {
   border: 1px solid #FB8500;
-  background-color: rgba(251, 133, 0, .5);
+  background-color: rgba(251, 133, 0, .8);
 }
 
 .account-page {
@@ -252,7 +260,6 @@ nav a {
 
 .article-description {
   padding: .5rem 1rem;
-  border-bottom: 1px solid grey;
 }
 
 
