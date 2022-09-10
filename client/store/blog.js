@@ -14,10 +14,19 @@ export const getBlogs = async dispatch => {
 }
 
 export const updateBlogRating = (blog, diff) => {
-  console.log('update rating please', blog, diff)
+  console.log('update rating please', blog.rating + diff)
   return async (dispatch, getState) => {
-    const response = await axios.put(`/api/blogs/rating`, { blog, rating: blog.rating + diff  }, { headers: { authorization: window.localStorage.getItem('token') }})
-    dispatch({type: UPDATE_RATING, blog: response.data})
+    const response = await axios.put(`/api/blogs/rating`, 
+      { 
+        blog, 
+        rating: blog.rating + diff  },
+      { 
+        headers: { 
+          authorization: window.localStorage.getItem('token') 
+        }
+      }
+    )
+    getBlogs(dispatch)
   }
 }
 
@@ -69,7 +78,6 @@ export const modifyBlog = (blog) => {
   }
 }
 
-
 export default function(state = [], action){
   switch (action.type) {
     case SET_BLOGS:
@@ -79,7 +87,8 @@ export default function(state = [], action){
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
     case UPDATE_RATING:
-      return console.log('redux thunks dipstach update rating ', action.blog)
+      console.log('redux thunks dipstach update rating ', action.blog)
+      return state
     case DELETE_BLOG:
       return state.filter( blog => blog.id !== action.blog.id)
     default: 
