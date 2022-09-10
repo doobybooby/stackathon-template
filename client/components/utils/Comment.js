@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addReply, getReply } from '../../store/reply'
+import {BiReply} from 'react-icons/bi'
+import {AiOutlineCaretDown} from 'react-icons/ai'
 
 export const Comment = (props) => {
   const setCommentId = props.setCommentId
@@ -9,16 +11,15 @@ export const Comment = (props) => {
   
   const dispatch = useDispatch()
   const reply = props.reply
+  const user = reply.user
   const replies = useSelector(state => state.reply)
   const commentThread = replies.filter(r => r.replyId === reply.id)
 
-  const [ shoudDisplayThread, setShouldDisplayThread ] = useState(false)
-  console.log(replies)
+  const [ shoudDisplayThread, setShouldDisplayThread ] = useState(commentThread.length>0)
   
   const displayThreads = () => {
     setShouldDisplayThread(prev => !prev)
     fetchThreads(reply.id)
-    console.log('display threads')
   }
 
   const fetchThreads = (id) => {
@@ -33,18 +34,26 @@ export const Comment = (props) => {
 
   return (
     <div>
-      <div className='flex-row'>
-        <p>{ reply.message }</p>
-        <button onClick={displayThreads}>Show Threads</button>
-        <button onClick={queryResponse}>Reply</button>
-
+      <div className='flex-row' style={{ alignItems:'center'}}>
+        {
+          user &&
+            <img className='icon-40x' src={user.profileImage} alt="" />
+          
+        }
+        <div className='flex-col'>
+          <div className='flex-row m-0 p-0'>
+            <p className='p-0 m-0'>{ reply.message }</p>
+            <p style={{padding:'0 1rem', margin:0 }} onClick={queryResponse}><BiReply style={{padding:0, margin:0}} />Reply</p>
+          </div>
+          <p className='p-0 m-0' onClick={displayThreads} ><AiOutlineCaretDown/> Threads</p>
+        </div>
       </div>
-      <ul>
+      <div style={{ padding:'0 1rem' }}>
         {
           shoudDisplayThread &&
-          commentThread.map( reply => <li  key={reply.id}> <Comment reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFoucs} setIsThread={setIsThread} /></li> )
+          commentThread.map( reply =>  <Comment key={reply.id} reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFoucs} setIsThread={setIsThread} /> )
         }
-      </ul>
+      </div>
     </div>
   )
 }

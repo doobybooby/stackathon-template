@@ -8,7 +8,7 @@ export const Popup = (props) => {
   return ( props.trigger) && (
     <div className="popup">
       <div className="popup-inner">
-        <div className='flex-row'>
+        <div style={{ display:'flex', flexDirection:'row-reverse', color:'white'}}>
           <AiFillCloseCircle size={'2rem'} className="close" onClick={()=> props.setTrigger(false)}/>
         </div>
           <h3 className='m-0 ' style={{textAlign:'center'}}>Create Blog</h3>

@@ -25,11 +25,11 @@ export const ProfilePage = () => {
       <div className='flex-col'>
         <div className='user-profile-card ' >
           <div className='flex-row user-profile-card-header'>
-            <div className='flex-row'>
+            <div className='flex-row flex-center'>
               <img src={user.profileImage} className='icon-40x' />
               <h2>{user.username.toUpperCase()}</h2>
             </div>
-            <div className='flex-row' style={{justifyContent:'space-around'}} >
+            <div className='flex-row flex-center' style={{justifyContent:'space-around'}} >
               <p style={{padding:'0 1rem'}} > <FiPenTool/> {usersBlogs.length}</p>
               <p style={{padding:'0 1rem'}} >
                 <AiFillLike /> {usersBlogs.reduce((accum, blog)=>{ return accum += blog.rating}, 0)}

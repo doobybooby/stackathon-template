@@ -16,7 +16,6 @@ export const ReusableBlog = (props) => {
   
   const { blog } = props
   const blogComments = comments.filter(comment => comment.blogId === blog.id)
-  console.log(blog)
   const [ commentId, setCommentId ] = useState(blog.id)
   const [ commentInput, setCommentInput ] = useState('')
   const [ shouldSubmitComment, setShouldSubmitComment ] = useState(false)
@@ -53,17 +52,16 @@ export const ReusableBlog = (props) => {
     if(shouldFoucs){
       const input = document.querySelector(`#replyInput-${blog.id}`)
       input.focus()
-      console.log(input)
     }
   }
   focusOnInput()
 
   const submitComment = (ev)=> {
     ev.preventDefault()
-    console.log(commentInput, commentId)
     dispatch(addComment(commentInput, commentId, isThread))
     setCommentInput('')
     setShouldFocus(false)
+    shouldDisplayComment(true)
   }
   shouldSubmitComment && submitComment(commentInput, commentId)
 
@@ -108,13 +106,13 @@ export const ReusableBlog = (props) => {
               </div>
           </div>
 
-          <h3 style={{padding:'0 1rem', margin: '0'}}>{ blog.title }</h3>
+          <h3 style={{padding:'.5rem 1rem', margin: '0'}}>{ blog.title }</h3>
           { blog.image && <img src={blog.image}></img>}
           {
             blog.articleUrl && 
             <a href={`${blog.articleUrl}`} style={{padding:'0 1rem', margin: '0'}}>NEWS REFERENCE</a>
           }
-          <p style={{padding:'0 1rem', margin: '0'}}>{ blog.description }</p>
+          <p style={{padding:'.5rem 1rem', margin: '0'}}>{ blog.description }</p>
           <div className='flex-row like-comment-share flex-center'>
             <div className='flex-row flex-center'>
               <BiDownvote onClick={()=>decrementRating(blog)} size={'2rem'}/>
@@ -126,16 +124,18 @@ export const ReusableBlog = (props) => {
               </p>
             <div><BiShare size={'2rem'}/></div>
           </div>
-          <form className='comment-form'>
-            <input id={`replyInput-${blog.id}`} type="text" value={commentInput} onChange={handleInput} placeholder='Add comment...'/>
-            <button onClick={submitComment} >ADD</button>
-          </form>
-          <ul>
           {
             shouldDisplayComment &&
-            blogComments.map(reply => <li key={reply.id} ><Comment reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFocus} setIsThread={setIsThread}/></li>)
+            <>
+              <div style={{padding:'0 1rem'}}>
+                { blogComments.map(reply => <Comment key={reply.id} reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFocus} setIsThread={setIsThread}/> ) }
+              </div>
+              <form className='comment-form'>
+                <input id={`replyInput-${blog.id}`} type="text" value={commentInput} onChange={handleInput} placeholder='Add comment...'/>
+                <button onClick={submitComment} >POST</button>
+              </form>
+            </>
           }
-          </ul>
         </div>
         : <BlogEdit blog={blog} onClick={toggleShowHide}/>
       }

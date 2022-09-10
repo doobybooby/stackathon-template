@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getLogo } from '../utils/getLogo'
 import { Popup } from '../Popup'
 import { BsFillShareFill } from 'react-icons/bs'
+import { FiExternalLink } from 'react-icons/fi'
 
 export const Root = () => {
 
@@ -11,10 +12,10 @@ export const Root = () => {
   const dispatch = useDispatch()
   const [shouldPopUp, setShouldPopUp] = useState(false)
   const [articleUrl, setArticleUrl ] = useState('')
+  
   useEffect(()=> {
     getNews(dispatch)
   },[])
-
 
   const newsToBlog = (article) => {
     setArticleUrl(article.url)
@@ -23,7 +24,7 @@ export const Root = () => {
 
   return (
     <div style={{ paddingTop:'5rem' }}>
-      <h1 style={{ color:'white', textAlign:'center'}}>LATEST NEWS</h1>
+      <h1 style={{ textAlign:'center'}}>LATEST NEWS</h1>
       <ul className='articles-wrapper'>
         {
           news[0] 
@@ -40,16 +41,19 @@ export const Root = () => {
                               : <h2>{article.source.name}</h2>
                           } 
                           <h3 style={{ paddingLeft:'1rem' }}>{( article.title.split(' - ')[0] )}</h3>
+                          <BsFillShareFill size={'2.5rem'} onClick={()=>newsToBlog(article)} />
                         </div>
                       </div>
                       <img src={article.urlToImage} with='100%' alt="" />
                       <div className='flex-col article-description'>
                         <p>{article.description}</p>
-                        <a href={article.url}>Read More</a>
                         <p>Published At: { new Date(article.publishedAt).toLocaleTimeString() }{ new Date(article.publishedAt).toLocaleDateString() }</p>
                         <p>BY: {article.author}</p>
+                        <div id='link-to-articleUrl' className='flex-row flex-center'>
+                          <a target='_blank' style={{ color:'white'}} href={article.url}>Read More <FiExternalLink size={'1rem'}/></a>
+                        </div>
                       </div>
-                      <button onClick={()=>newsToBlog(article)} style={{ alignSelf:'flex-end' }}><BsFillShareFill size={'2rem'}/></button>
+                      {/* <BsFillShareFill size={'2rem'} onClick={()=>newsToBlog(article)} style={{ alignSelf:'flex-start' }} /> */}
                     </div>
                     <Popup trigger={shouldPopUp}  setTrigger={setShouldPopUp} articleUrl={articleUrl} >
                     </Popup>

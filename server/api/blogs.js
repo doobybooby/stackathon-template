@@ -24,7 +24,13 @@ router.get('/:id/comments', async (req, res, next) => {
     const comments = await Reply.findAll({
       where: {
         blogId:req.params.id
-      }
+      },
+      include: [
+        {
+          model: User,
+          attriutes: ['profileImage', 'username']
+        }
+      ]
     })
     res.json(comments)
   } catch (err) {
@@ -88,7 +94,6 @@ router.put('/rating', async (req,res, next)=> {
       id:req.body.blog.id
     }
   })
-  console.log('blog shoudl get is rating updated', blog.rating, req.body.rating)
   await blog.update({rating: req.body.rating})
   await blog.save()
   res.send(blog)
@@ -102,8 +107,6 @@ router.put('/', isLoggedIn, async (req, res, next) => {
         userId: req.body.blog.userId
       }
     })
-
-    console.log()
     await blog.update(req.body.rating)
     await blog.save()
     res.send(blog)

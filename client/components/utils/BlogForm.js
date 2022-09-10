@@ -27,13 +27,17 @@ export const BlogForm = (props) => {
   }
 
   const inputImage = (ev) => {
-    console.log('tryig to input an image')
     const file = ev.target.files[0];
     const reader = new FileReader();
     reader.addEventListener('load', () => {
       setUploadFile(reader.result);
     });
     reader.readAsDataURL(file);
+  }
+
+  const focusFile = ()=> {
+    const inputFile = document.querySelector('#file-upload')
+    inputFile.focus()
   }
 
   return (
@@ -53,11 +57,11 @@ export const BlogForm = (props) => {
               articleUrl && <p>{articleUrl}</p>
             }
             <textarea onChange={inputDescription} name="" id="" cols="25" rows="5" placeholder='enter description'></textarea>
-            <label htmlFor="file-upload" className='flex-row flex-center'>
+            <label htmlFor="file-upload" className='flex-row flex-center' style={{ border:' 1px dotted white' }}>
               <input id='file-upload' type="file" onChange={inputImage}/>
-              Add A Cover Photo<MdAddPhotoAlternate size={'2rem'}/>
+              Add A Photo<MdAddPhotoAlternate size={'2rem'}/>
             </label>
-            <button className='blog-form-submit-button'>Blog</button>
+            <button className='blog-form-submit-button' style={{ border:'1px solid black' }}>Blog</button>
             {/* <button onClick={handleClick}>BLOG</button> */}
           </form >
         }

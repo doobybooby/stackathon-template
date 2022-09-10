@@ -41,7 +41,6 @@ export const authenticate = (username, password, method) => async dispatch => {
 export const editProfile = (userForm) => {
   return async dispatch =>  {
     const {username, password, profileImage } = userForm
-    console.log('user wants to change their password, ', username)
 
     if( password === ''){
       const response = await axios.put('/api/users', 
@@ -55,7 +54,6 @@ export const editProfile = (userForm) => {
           }
         }
       )
-      console.log(response.data, userForm)
     }
     else {
       const response = await axios.put('/api/users', 
@@ -70,8 +68,6 @@ export const editProfile = (userForm) => {
           }
         }
       )
-      console.log(response.data, userForm)
-
     }
   }
 }

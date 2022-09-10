@@ -14,7 +14,6 @@ export const getBlogs = async dispatch => {
 }
 
 export const updateBlogRating = (blog, diff) => {
-  console.log('update rating please', blog.rating + diff)
   return async (dispatch, getState) => {
     const response = await axios.put(`/api/blogs/rating`, 
       { 
@@ -64,7 +63,6 @@ export const postBlog = (title, description, file, articleUrl) => {
 
 export const modifyBlog = (blog) => {
   return async dispatch => {
-    console.log('modify blog', blog)  
     const response = await axios.put(`/api/blogs`, 
       { blog },
       {
@@ -73,7 +71,6 @@ export const modifyBlog = (blog) => {
         }
       }
     )
-    console.log('did the blog modify:?', response.data)
     getBlogs(dispatch) 
   }
 }
