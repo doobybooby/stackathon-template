@@ -43,12 +43,12 @@ export const Comment = (props) => {
         <div className='flex-col'>
           <div className='flex-row m-0 p-0'>
             <p className='p-0 m-0'>{ reply.message }</p>
-            <p style={{padding:'0 1rem', margin:0 }} onClick={queryResponse}><BiReply style={{padding:0, margin:0}} />Reply</p>
+            <p style={{padding:'0 .5rem', margin:0, color:'blue' }} onClick={queryResponse}><BiReply style={{padding:0, margin:0}} />Reply</p>
           </div>
           <p className='p-0 m-0' onClick={displayThreads} ><AiOutlineCaretDown/> Threads</p>
         </div>
       </div>
-      <div style={{ padding:'0 1rem' }}>
+      <div style={{ padding:'1rem' }}>
         {
           shoudDisplayThread &&
           commentThread.map( reply =>  <Comment key={reply.id} reply={reply} setCommentId={setCommentId} setShouldFocus={setShouldFoucs} setIsThread={setIsThread} /> )

@@ -18,6 +18,11 @@
   background-repeat:  space;
 }
 
+[class*='bbc']{
+  background-image: url('./bbc.svg');
+  background-repeat:  space;
+}
+
 [class*='fox']{
   background-image: url('./fox.svg');
   background-repeat:  space;

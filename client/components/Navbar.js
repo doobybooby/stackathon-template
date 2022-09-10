@@ -13,8 +13,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           ? (
             <div style={{ display:'flex', justifyContent:'space-around', alignItems: 'center'}}>
               <div className='flex-col flex-center' style={{ flex:'1' }} >
-                <h3 style={{ margin:'0', paddingTop:'1rem' }} >Nonya News</h3>
-                <h3 style={{ fontSize:'.7rem' }}>{ displayTime() }</h3>
+                <h3 style={{ margin:'0', paddingTop:'0' }} >Nonya News</h3>
+                {/* <h3 style={{ fontSize:'.7rem' }}>{ displayTime() }</h3> */}
               </div>
               <div className='flex-row flex-center' style={{ flex:'1' }}>
                 <Link to="/home" className='flex-col'>NEWS</Link>

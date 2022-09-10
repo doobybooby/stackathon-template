@@ -51,7 +51,7 @@ export const BlogForm = (props) => {
               <input style={{width:'100%'}} type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
             </div>
             {
-              uploadFile && <img width='100%' src={uploadFile}/>
+              uploadFile && <img width='300px' style={{alignSelf:'center'}} src={uploadFile}/>
             }
             {
               articleUrl && <p>{articleUrl}</p>

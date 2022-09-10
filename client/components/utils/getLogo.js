@@ -14,6 +14,7 @@ import YahooLogo from '../../../public/yahoo.svg'
 import YoutubeLogo from '../../../public/youtube.svg'
 import VergeLogo from '../../../public/verge.svg'
 import GuardianLogo from '../../../public/guardian.svg'
+import BbcLogo from '../../../public/bbc.svg'
 
 export const getLogo = function(id, name){
   if(id && id.includes('cnn')) 
@@ -46,4 +47,6 @@ export const getLogo = function(id, name){
     return <YoutubeLogo />
   if((id && (id.includes('verge') )) || name.includes('verge'))
     return <VergeLogo />
+  if((id && (id.includes('bbc') )) || name.includes('bbc'))
+    return <BbcLogo />
 }
