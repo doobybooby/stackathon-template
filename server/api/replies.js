@@ -26,6 +26,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log('adding a comment/ thread')
     const replies = await Reply.create(req.body)
     res.json(replies)
   } 

@@ -67,14 +67,13 @@ input[type="file"] {
 /* NAV Bar */
 /*         */
 
-.nav-component {
+.nav-component >nav {
   transition: all 300ms  ease-in-out;
   background-color: #023047;
   color: #E0F4FE;
   position: fixed;
   width: 100%;
   z-index: 999;
-  
 }
 
 nav a {
@@ -90,9 +89,8 @@ nav a {
 }
 
 .scroll-up {
-  filter: drop-shadow(0 -10px 20px #E0F4FE);
-  
-}
+  box-shadow: 0 0 2px #E0F4FE;
+} 
 
 .dropdown {
   position: relative;
@@ -102,7 +100,9 @@ nav a {
   display: none;
   position: absolute;
   background-color: #343a40;
-  min-width: 160px;
+  right: 10px;
+  /* min-width: 160px; */
+  width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -221,6 +221,7 @@ nav a {
   list-style: none;
   padding: 0;
   margin: 0;
+  padding-top: 1rem;
 }
 
 .article {
@@ -265,6 +266,8 @@ nav a {
   /* background-color: #E0F4FE; */
   justify-content: center;
   flex-direction: column;
+  padding-top: 5rem;
+
 }
 
 .blog-component  > * {
@@ -372,7 +375,7 @@ nav a {
 .user-profile-component {
   justify-content: space-around;
   width: 100%;
-  padding: 1rem;
+  padding-top: 6rem;
   background-color: #023047;
 }
 
@@ -437,6 +440,7 @@ nav a {
   /* background-color: black; */
   /* padding: 1rem; */
   margin: 0rem;
+  z-index: 100;
 }
 
 .gsc-search-box {
@@ -444,6 +448,7 @@ nav a {
   padding: 0;
   margin: 0;
   display: flex;
+  width: 200px;
   align-items: center;
   justify-content: center;
   /* background-color: #DB4437; */
@@ -465,9 +470,8 @@ nav a {
 
 }
 
-.gsc-modal-background-image {
-  z-index: 55;
-  position: absolute;
+.gsc-results-wrapper-overlay {
+  z-index: 80;
 }
 
 /* POP UP */

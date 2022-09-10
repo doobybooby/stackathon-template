@@ -8,7 +8,7 @@ export const Footer = () => {
       <div>
         <SiGmail /> nonaytoonz@gmail.com
       </div>
-      <p>ABOUT US</p>
+      <p>NY</p>
     </div>
   )
 }

@@ -82,6 +82,17 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
+router.put('/rating', isLoggedIn, async (req,res, next)=> {
+  const blog = await Blog.findOne({
+    where: {
+      id:req.body.blog.id
+    }
+  })
+  await blog.update(req.body.blog)
+  await blog.save()
+  res.send(blog)
+})
+
 router.put('/', isLoggedIn, async (req, res, next) => {
   try {
     const blog = await Blog.findOne({
@@ -90,8 +101,9 @@ router.put('/', isLoggedIn, async (req, res, next) => {
         userId: req.body.blog.userId
       }
     })
-    console.log(blog.userId, req.body.blog)
-    await blog.update(req.body.blog)
+
+    console.log()
+    await blog.update(req.body.rating)
     await blog.save()
     res.send(blog)
   }

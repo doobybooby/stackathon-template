@@ -4,15 +4,20 @@ import { addReply, getReply } from '../../store/reply'
 
 export const Comments = (props) => {
   const reply = props.reply
+
   const dispatch = useDispatch()
-  const [shouldDisplayThread, setShouldDisplayThread] = useState(false)
   const replies = useSelector(state => state.reply)
+  
+  const [ inputThread, setInputThread ] = useState('')
+  const [ shouldDisplayThread, setShouldDisplayThread ] = useState(false)
   const commentThread = replies.filter(r => r.replyId === reply.id)
 
-  const [inputThread, setInputThread] = useState('')
+  const setInput = props.setCommentInput
+  const setId = props.setCommentId
+  const setShouldSubmit = props.setShouldSubmitComment
 
-
-
+  console.log('set input ', setInput, 'replies: ', replies)
+  
   const fetchThreads = (id) => {
     dispatch(getReply(id))
   }
@@ -25,30 +30,37 @@ export const Comments = (props) => {
   
   const handleInput = (ev)=> {
     setInputThread(ev.target.value)
+    setInput(ev.target.value)
   }
   
   const submitThread = (ev) => {
     ev.preventDefault()
+    setShouldSubmit(true)
+    setId(reply.Id)
     dispatch(addReply(inputThread, reply.id))
     setInputThread('')
+    setInput('')
   }
 
   return (
     <div>
-      {reply.message}
-      <button onClick={displayThread}>^</button>
+      <li>
+        {reply.message}
+        <button onClick={displayThread}>Show threads</button>
+      </li>
       <ul>
         {
           shouldDisplayThread && 
-          commentThread.map(thread => <li key={thread.id}>{thread.message}</li> )
+          commentThread.map(reply => <Comments reply={reply} props={props} key={thread.id}/> )
         }
       </ul>      
       {
         shouldDisplayThread &&
-        <form>
-          <input type="text" value={inputThread} onChange={handleInput}/>
-          <button onClick={submitThread}>Thread</button>
-        </form>
+        <Comments reply={thread} props={props}/>
+        // <form>
+        //   <input type="text" value={inputThread} onChange={handleInput}/>
+        //   <button onClick={submitThread}>Thread</button>
+        // </form>
       }
     </div>
   )

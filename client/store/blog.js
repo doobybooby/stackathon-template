@@ -4,6 +4,7 @@ const SET_BLOGS = 'SET_BLOGS'
 const PUBLISH_BLOG = 'PUBLISH_BLOG'
 const UPDATE_BLOG = 'UPDATE_BLOG'
 const DELETE_BLOG = 'DELETE_BLOG'
+const UPDATE_RATING = 'UPDATE_RATING'
 
 const setBlogs = blogs => ({type: SET_BLOGS, blogs})
 
@@ -13,9 +14,10 @@ export const getBlogs = async dispatch => {
 }
 
 export const updateBlogRating = (blog, diff) => {
+  console.log('update rating please', blog, diff)
   return async (dispatch, getState) => {
-    const response = await axios.put(`/api/blogs/${blog.id}`, { rating: blog.rating + diff  }, { headers: { authorization: window.localStorage.getItem('token') }})
-    getBlogs(dispatch)
+    const response = await axios.put(`/api/blogs/rating`, { blog, rating: blog.rating + diff  }, { headers: { authorization: window.localStorage.getItem('token') }})
+    dispatch({type: UPDATE_RATING, blog: response.data})
   }
 }
 
@@ -76,6 +78,8 @@ export default function(state = [], action){
       return [...state, action.blog]
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
+    case UPDATE_RATING:
+      return console.log('redux thunks dipstach update rating ', action.blog)
     case DELETE_BLOG:
       return state.filter( blog => blog.id !== action.blog.id)
     default: 

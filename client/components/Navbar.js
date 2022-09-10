@@ -2,11 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
-import { AiFillHome } from 'react-icons/ai'
-import { RiAccountCircleFill } from 'react-icons/ri'
-import {ImNewspaper, ImBook, ImSearch} from 'react-icons/im'
 import { GoogleSearch } from './utils/GoogleSearch'
 import { CSE } from './utils/CSE'
+import {FaSearch} from 'react-icons/fa'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className='nav-component'>
@@ -15,12 +13,13 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         isLoggedIn 
           ? (
             <div style={{display:'flex', justifyContent:'space-around', alignItems: 'center'}}>
+              <h3>Nonya News</h3>
               <div className='flex-row'>
-                <Link to="/home" className='flex-col'><ImNewspaper/></Link>
+                <Link to="/home" className='flex-col'>NEWS</Link>
                 {/* <Link to="/news">News</Link> */}
-                <Link to="/blogs" className='flex-col'><ImBook /></Link>
+                <Link to="/blogs" className='flex-col'>BLOGS</Link>
                 <div className="dropdown">
-                  <p className='flex-col'><RiAccountCircleFill /></p>
+                  <p className='flex-col'>ACCOUNT</p>
                   <div className="dropdown-content">
                     <a href="/profile">Profile</a>
                     <a href="/profile/edit">Edit</a>
@@ -29,23 +28,26 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                     </a>
                   </div>
                 </div>
+                <div className="dropdown">
+                  <p><FaSearch size={'1.5rem'}/></p>
+                  <div  className="dropdown-content">
+                    <GoogleSearch style={{width:'100rem'}}/>
+                  </div>
+                </div>
               </div>
-              <h3>Nonya News</h3>
               {/* <h3>{displayTime()}</h3> */}
-              {/* <GoogleSearch /> */}
-              <CSE />
+              {/* <CSE /> */}
             </div>
           ) 
           : (
-            <div style={{display:'flex', justifyContent:'space-between'}}>
+            <div style={{display:'flex', justifyContent:'space-around'}}>
               <div className='flex-row'>
                 <Link to="/home" className='flex-col'>News</Link>
                 <Link to="/blogs" className='flex-col'>Blogs</Link>
-                <Link to="/account" className='flex-col'>Account</Link>
+                <Link to="/account" className='flex-col'>Log In</Link>
               </div>
-              <h3>Nonya News</h3>
               {/* <h3>{displayTime()}</h3> */}
-              <GoogleSearch />
+              <GoogleSearch style={{width:'100rem'}}/>
             </div>
           )
       }

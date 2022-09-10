@@ -13,7 +13,8 @@ export const Root = () => {
   },[])
 
   return (
-    <div>
+    <div style={{  paddingTop: '5rem'}}>
+      <h1 style={{color:'white', textAlign:'center'}}>LATEST NEWS</h1>
       <ul className='articles-wrapper'>
         {
           news[0] 

@@ -40,7 +40,12 @@
 
 [class*='google']{
   background-image: url('./googleNews.svg');
-  background-repeat: 45deg space;
+  background-repeat: space;
+}
+
+[class*='guardian']{
+  background-image: url('./guardian.svg');
+  background-repeat: space;
 }
 
 [class*='washington']{

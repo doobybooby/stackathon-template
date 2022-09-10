@@ -1,4 +1,5 @@
 import axios from "axios"
+import { getReply } from "./reply"
 
 const SET_COMMENT = 'SET_COMMENT'
 
@@ -15,20 +16,38 @@ export const getComments = (id) => {
   }
 }
 
-export const addComment = (message, id)=> {
+export const addComment = (message, id, isThread)=> {
+  console.log(message, id, isThread)
   return async dispatch => {
-    const response = await axios.post('/api/replies',
-      {
-        message,
-        blogId:id
-      },
-      {
-        headers: {
-          authorization: window.localStorage.getItem('token')
+    if(isThread){
+      const response = await axios.post('/api/replies',
+        {
+          message,
+          replyId:id
+        },
+        {
+          headers: {
+            authorization: window.localStorage.getItem('token')
+          }
         }
-      }
-    )
-    return dispatch(getComments(response.data.blogId))
+      )
+      // return dispatch(getComments(response.data.blogId))
+      return dispatch(getReply(response.data.replyId))
+    }
+    else {
+      const response = await axios.post('/api/replies',
+        {
+          message,
+          blogId:id
+        },
+        {
+          headers: {
+            authorization: window.localStorage.getItem('token')
+          }
+        }
+      )
+      return dispatch(getComments(response.data.blogId))
+    }
   }
 }
 

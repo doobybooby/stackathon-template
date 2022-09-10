@@ -13,6 +13,7 @@ import CnbcLogo from '../../../public/cnbc.svg'
 import YahooLogo from '../../../public/yahoo.svg'
 import YoutubeLogo from '../../../public/youtube.svg'
 import VergeLogo from '../../../public/verge.svg'
+import GuardianLogo from '../../../public/guardian.svg'
 
 export const getLogo = function(id, name){
   if(id && id.includes('cnn')) 
@@ -29,6 +30,8 @@ export const getLogo = function(id, name){
     return <CnetLogo />
   if((id && (id.includes('google') )) || name.includes('google'))
     return <GoogleNewsLogo />
+  if((id && (id.includes('guardian') )) || name.includes('guardian'))
+    return <GuardianLogo />
   if((id && (id.includes('fox') )) || name.includes('fox'))
     return <FoxLogo />
   if((id && (id.includes('wall') )) || name.includes('wall'))
