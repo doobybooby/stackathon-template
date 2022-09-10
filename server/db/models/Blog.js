@@ -20,6 +20,9 @@ const Blog = db.define('blog', {
   isNewsPost: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  articleUrl: {
+    type: Sequelize.STRING,
   }
 })
 

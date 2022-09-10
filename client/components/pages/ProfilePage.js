@@ -44,7 +44,7 @@ export const ProfilePage = () => {
               usersBlogs.length > 0
                 ? usersBlogs.sort((a,b)=>  Date.parse(b.createdAt) - Date.parse(a.createdAt))
                     .map( blog => <ReusableBlog  key={blog.id} blog={blog} /> )
-                : <p style={{textAlign:'center', background:'#F2F5FA', padding: '1rem'}}>User doesn't have any blog</p>
+                : <p style={{textAlign:'center', background:'#F2F5FA', padding: '1rem'}}>NO BLOGS TO FETCH</p>
             }
           </div>
         </div>

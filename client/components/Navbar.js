@@ -11,9 +11,12 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       {
         isLoggedIn 
           ? (
-            <div style={{display:'flex', justifyContent:'space-around', alignItems: 'center'}}>
-              <h3>Nonya News</h3>
-              <div className='flex-row'>
+            <div style={{ display:'flex', justifyContent:'space-around', alignItems: 'center'}}>
+              <div className='flex-col flex-center' style={{ flex:'1' }} >
+                <h3 style={{ margin:'0', paddingTop:'1rem' }} >Nonya News</h3>
+                <h3 style={{ fontSize:'.7rem' }}>{ displayTime() }</h3>
+              </div>
+              <div className='flex-row flex-center' style={{ flex:'1' }}>
                 <Link to="/home" className='flex-col'>NEWS</Link>
                 <Link to="/blogs" className='flex-col'>BLOGS</Link>
                 <div className="dropdown">
@@ -26,14 +29,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                     </a>
                   </div>
                 </div>
-                <div className="dropdown">
-                  <p><FaSearch size={'1.5rem'}/></p>
-                  <div  className="dropdown-content">
-                    <GoogleSearch style={{width:'100rem'}}/>
-                  </div>
-                </div>
               </div>
-              {/* <h3>{displayTime()}</h3> */}
+              <div style={{ flex:'1' }}>
+                <GoogleSearch style={{width:'100rem'}}/>
+              </div>
               {/* <CSE /> */}
             </div>
           ) 

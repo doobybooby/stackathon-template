@@ -47,10 +47,10 @@ export const deleteBlog = ( blog ) => {
   }
 }
 
-export const postBlog = (title, description, file) => {
+export const postBlog = (title, description, file, articleUrl) => {
   return async (dispatch) => {
     const response = await axios.post('/api/blogs', 
-      { title, description, image:file }, 
+      { title, description, image:file, articleUrl }, 
       {
         headers: { 
           authorization : window.localStorage.getItem('token')

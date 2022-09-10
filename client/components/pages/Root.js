@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getNews } from '../../store/news'
 import { useDispatch, useSelector } from 'react-redux'
 import { getLogo } from '../utils/getLogo'
+import { Popup } from '../Popup'
+import { BsFillShareFill } from 'react-icons/bs'
 
 export const Root = () => {
 
   const news = useSelector(state => state.news)
   const dispatch = useDispatch()
-
+  const [shouldPopUp, setShouldPopUp] = useState(false)
+  const [articleUrl, setArticleUrl ] = useState('')
   useEffect(()=> {
     getNews(dispatch)
   },[])
 
 
-  const newsToBlog = () => {
-    console.log('can you mkae this news post into a blog?')
+  const newsToBlog = (article) => {
+    setArticleUrl(article.url)
+    setShouldPopUp(true)
   }
 
   return (
@@ -45,8 +49,10 @@ export const Root = () => {
                         <p>Published At: { new Date(article.publishedAt).toLocaleTimeString() }{ new Date(article.publishedAt).toLocaleDateString() }</p>
                         <p>BY: {article.author}</p>
                       </div>
+                      <button onClick={()=>newsToBlog(article)} style={{ alignSelf:'flex-end' }}><BsFillShareFill size={'2rem'}/></button>
                     </div>
-                    <button onClick={newsToBlog} style={{ alignSelf:'flex-end' }}>BLOG THIS</button>
+                    <Popup trigger={shouldPopUp}  setTrigger={setShouldPopUp} articleUrl={articleUrl} >
+                    </Popup>
                   </li>
                 )}
               )

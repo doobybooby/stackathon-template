@@ -16,7 +16,7 @@ export const ReusableBlog = (props) => {
   
   const { blog } = props
   const blogComments = comments.filter(comment => comment.blogId === blog.id)
-  
+  console.log(blog)
   const [ commentId, setCommentId ] = useState(blog.id)
   const [ commentInput, setCommentInput ] = useState('')
   const [ shouldSubmitComment, setShouldSubmitComment ] = useState(false)
@@ -110,6 +110,10 @@ export const ReusableBlog = (props) => {
 
           <h3 style={{padding:'0 1rem', margin: '0'}}>{ blog.title }</h3>
           { blog.image && <img src={blog.image}></img>}
+          {
+            blog.articleUrl && 
+            <a href={`${blog.articleUrl}`} style={{padding:'0 1rem', margin: '0'}}>NEWS REFERENCE</a>
+          }
           <p style={{padding:'0 1rem', margin: '0'}}>{ blog.description }</p>
           <div className='flex-row like-comment-share flex-center'>
             <div className='flex-row flex-center'>

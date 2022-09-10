@@ -5,11 +5,12 @@ import {MdAddPhotoAlternate} from 'react-icons/md'
 
 
 export const BlogForm = (props) => {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.auth)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [uploadFile, setUploadFile] = useState();
-  const user = useSelector(state => state.auth)
-  const dispatch = useDispatch()
+  const articleUrl = props.articleUrl
 
   const inputName = (e)=> {
     setTitle(e.target.value)
@@ -19,10 +20,10 @@ export const BlogForm = (props) => {
   }
 
   const handleClick = ()=> {
-    setTitle(prev => '')
-    setDescription(prev => '')
+    setTitle('')
+    setDescription('')
     props.setTrigger(false)
-    dispatch(postBlog(title, description, uploadFile))
+    dispatch(postBlog(title, description, uploadFile, articleUrl))
   }
 
   const inputImage = (ev) => {
@@ -35,19 +36,21 @@ export const BlogForm = (props) => {
     reader.readAsDataURL(file);
   }
 
-
   return (
     <div className='blog-form-component'>
       <div className='blog-form flex-col flex-center'>
         {
           user &&
-          <form onSubmit={handleClick} className='flex-col'>
+          <form onSubmit={handleClick} className='flex-col' style={{color:'#85D4FC'}}>
             <div className='flex-row'>
               <img src={user.profileImage} className='icon-40x' alt="" />
               <input style={{width:'100%'}} type="text" onChange={inputName} placeholder='ENTER A CATCHY TITLE'/>
             </div>
             {
               uploadFile && <img width='100%' src={uploadFile}/>
+            }
+            {
+              articleUrl && <p>{articleUrl}</p>
             }
             <textarea onChange={inputDescription} name="" id="" cols="25" rows="5" placeholder='enter description'></textarea>
             <label htmlFor="file-upload" className='flex-row flex-center'>
