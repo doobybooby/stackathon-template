@@ -22,6 +22,14 @@ a {
   padding: 0;
 }
 
+.m-1 {
+  margin: 1rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
 label {
   display: block;
 }

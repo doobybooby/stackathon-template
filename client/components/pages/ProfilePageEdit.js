@@ -31,6 +31,8 @@ export const ProfilePageEdit = () => {
   const sumbmitEditForm = (ev) => {
     ev.preventDefault()
     dispatch(editProfile(userForm))
+    
+    history.push('/profile')
   }
 
   const allowSubmit =()=> {

@@ -69,6 +69,7 @@ export const editProfile = (userForm) => {
         }
       )
     }
+    dispatch(me())
   }
 }
 

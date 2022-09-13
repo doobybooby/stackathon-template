@@ -33,7 +33,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               <div style={{ flex:'1' }}>
                 <GoogleSearch style={{width:'100rem'}}/>
               </div>
-              {/* <CSE /> */}
             </div>
           ) 
           : (
@@ -42,13 +41,12 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 <h3 >Nonya News</h3>
               </div>
               <div className='flex-row flex-center' style={{ flex:'1'}}>
-                <Link to="/home" className='flex-col'>News</Link>
-                <Link to="/blogs" className='flex-col'>Blogs</Link>
-                <Link to="/account" className='flex-col'>Log In</Link>
+                <Link to="/home"> News </Link>
+                <Link to="/blogs"> Blogs </Link>
+                <Link to="/account"> Log In </Link>
               </div>
               <div style={{ flex:'1' }}>
                 <GoogleSearch />
-
               </div>
             </div>
           )

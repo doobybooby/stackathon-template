@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addReply, getReply } from '../../store/reply'
-import {BiReply} from 'react-icons/bi'
-import {AiOutlineCaretDown} from 'react-icons/ai'
+import { BiReply } from 'react-icons/bi'
+import { AiOutlineCaretDown } from 'react-icons/ai'
 
-export const Comment = (props) => {
+
+export const Comment = props => {
   const setCommentId = props.setCommentId
   const setShouldFoucs = props.setShouldFocus
   const setIsThread = props.setIsThread
@@ -15,7 +16,7 @@ export const Comment = (props) => {
   const replies = useSelector(state => state.reply)
   const commentThread = replies.filter(r => r.replyId === reply.id)
 
-  const [ shoudDisplayThread, setShouldDisplayThread ] = useState(commentThread.length>0)
+  const [ shoudDisplayThread, setShouldDisplayThread ] = useState(commentThread.length > 0)
   
   const displayThreads = () => {
     setShouldDisplayThread(prev => !prev)

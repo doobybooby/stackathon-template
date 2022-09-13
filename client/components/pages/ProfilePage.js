@@ -7,6 +7,7 @@ import { ReusableBlog } from '../utils/ReusableBlog'
 import { BsFillPlusSquareFill } from 'react-icons/bs'
 import { AiFillLike } from 'react-icons/ai'
 import { FiPenTool } from 'react-icons/fi'
+import { me } from '../../store/auth'
 
 export const ProfilePage = () => {
   const dispatch = useDispatch()

@@ -62,6 +62,7 @@ export const postBlog = (title, description, file, articleUrl) => {
 }
 
 export const modifyBlog = (blog) => {
+  console.log('edit ths please', blog)
   return async dispatch => {
     const response = await axios.put(`/api/blogs`, 
       { blog },
@@ -71,6 +72,7 @@ export const modifyBlog = (blog) => {
         }
       }
     )
+    console.log(response.data)
     getBlogs(dispatch) 
   }
 }
