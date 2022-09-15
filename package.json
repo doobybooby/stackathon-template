@@ -26,6 +26,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
     "react-icons": "^4.4.0",
+    "react-share": "^4.4.0",
     "sequelize": "^6.21.4"
   },
   "devDependencies": {

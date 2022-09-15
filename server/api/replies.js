@@ -38,11 +38,15 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', isLoggedIn, async (req, res, next) => {
+
+router.put('/', async (req, res, next) => {
   try {
-    const replies = await Reply.create(req.body)
-    console.log('adding a comment/thread ', req.user)
-    await replies.update({userId: req.user.id})
+    const replies = await Reply.findOne({
+      where: {
+        id:req.body.id
+      }
+    })
+    await replies.update(req.body)
     await replies.save()
     res.json(replies)
   } 
@@ -51,14 +55,10 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.post('/', isLoggedIn, async (req, res, next) => {
   try {
-    const replies = await Reply.findOne({
-      where: {
-        replyId:req.params.id
-      }
-    })
-    await replies.update(req.body)
+    const replies = await Reply.create(req.body)
+    await replies.update({userId: req.user.id})
     await replies.save()
     res.json(replies)
   } 

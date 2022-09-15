@@ -94,7 +94,7 @@ router.put('/rating', isLoggedIn, async (req,res, next)=> {
       id:req.body.blog.id
     }
   })
-  await blog.update({rating: req.body.rating})
+  await blog.update({ rating: req.body.rating })
   await blog.save()
   res.send(blog)
 })

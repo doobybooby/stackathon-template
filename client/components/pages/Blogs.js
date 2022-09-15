@@ -9,7 +9,7 @@ export const Blogs = () => {
 
   useEffect(()=> {
     getBlogs(dispatch)
-  },[blogs.length])
+  },[])
 
   return (
     <div className='blog-component flex-col'>

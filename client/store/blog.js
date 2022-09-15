@@ -86,7 +86,6 @@ export default function(state = [], action){
     case UPDATE_BLOG:
       return state.find(blog => blog.id===action.blog.id)
     case UPDATE_RATING:
-      console.log('redux thunks dipstach update rating ', action.blog)
       return state
     case DELETE_BLOG:
       return state.filter( blog => blog.id !== action.blog.id)
