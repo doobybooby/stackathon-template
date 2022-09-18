@@ -5,6 +5,7 @@ import { getLogo } from '../utils/getLogo'
 import { Popup } from '../Popup'
 import { BsFillShareFill } from 'react-icons/bs'
 import { FiExternalLink } from 'react-icons/fi'
+import axios from 'axios'
 
 export const Root = () => {
 
@@ -22,8 +23,15 @@ export const Root = () => {
     setShouldPopUp(true)
   }
 
+  const fetchNewsFromBackend = async() => {
+    const response = await axios.get('/api/news')
+    console.log('from the front end', response)
+    
+  }
+
   return (
     <div style={{ paddingTop:'5rem' }}>
+      <button onClick={fetchNewsFromBackend}>FETCH NEWS FROM BACKEND</button>
       <h1 style={{ textAlign:'center'}}>LATEST NEWS</h1>
       <ul className='articles-wrapper'>
         {
