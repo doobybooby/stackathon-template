@@ -1,5 +1,4 @@
 import axios from "axios"
-import { getComments } from "./comments"
 
 const SET_REPLY = 'SET_REPLY'
 const ADD_REPLY = 'ADD_REPLY'
@@ -15,6 +14,17 @@ export const getReply = (id) => {
       }
     })
     console.log('we are passing in this reply ', response.data, id)
+    return dispatch(setReply(response.data))
+  }
+}
+
+export const getComments = (id) => {
+  return async dispatch => {
+    const response = await axios.get(`/api/blogs/${id}/comments`, { 
+      headers: {
+        authorization: window.localStorage.getItem('token')
+      }
+    })
     return dispatch(setReply(response.data))
   }
 }
@@ -61,11 +71,13 @@ export const editComment = (message, id)=> {
 export default function(state = [], action){
   switch (action.type) {
     case SET_REPLY:
-      return [...state, ...action.reply].reduce((accum, reply)=>{
-        if(!accum.find(set => set.id===reply.id))
-        accum.push(reply)
-        return accum
-      },[])
+      console.log('we want to set the state', state)
+      return state.map(reply => reply.id !== action.reply.id ? reply : action.reply )
+      // return [...state, ...action.reply].reduce((accum, reply)=>{
+      //   if(!accum.find(set => set.id===reply.id))
+      //   accum.push(reply)
+      //   return accum
+      // },[])
     case EDIT_REPLY:
       console.log('redux thunks reply, ', [...state], action.reply)
       return [...state].map(reply => reply.id===action.reply.id ? action.reply : reply )

@@ -1,20 +1,10 @@
 import axios from "axios"
-import { getReply } from "./reply"
+import { getComments, getReply } from "./reply"
 
 const SET_COMMENT = 'SET_COMMENT'
 
 const setComments = comments => ({type: SET_COMMENT, comments})
 
-export const getComments = (id) => {
-  return async dispatch => {
-    const response = await axios.get(`/api/blogs/${id}/comments`, { 
-      headers: {
-        authorization: window.localStorage.getItem('token')
-      }
-    })
-    return dispatch(setComments(response.data))
-  }
-}
 
 export const addComment = (message, id, isThread)=> {
   return async dispatch => {
@@ -30,7 +20,6 @@ export const addComment = (message, id, isThread)=> {
           }
         }
       )
-      // return dispatch(getComments(response.data.blogId))
       return dispatch(getReply(response.data.replyId))
     }
     else {
@@ -64,7 +53,6 @@ export const editCommentReply = (message, id)=> {
       }
     )
     console.log('now re render the comment ', response.data)
-    // dispatch(getReply(response.data.id))
     return dispatch(getComments(response.data.id))
   
   }

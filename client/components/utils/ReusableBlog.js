@@ -4,13 +4,14 @@ import { deleteBlog, updateBlogRating, modifyBlog } from '../../store/blog'
 import { AiTwotoneDelete } from 'react-icons/ai'
 import { BiDownvote, BiUpvote, BiComment, BiShare, BiEdit, BiDotsVerticalRounded } from 'react-icons/bi'
 import { Comment } from '../utils/Comment'
-import { addComment, editCommentReply, getComments } from '../../store/comments'
+import { addComment, editCommentReply } from '../../store/comments'
 import { BlogEdit } from '../pages/BlogEdit'
 import { displayTimeDifference } from './displayTimeDifference'
 import { FacebookShareButton, FacebookIcon } from 'react-share'
 import { Link } from 'react-router-dom'
 import { BsInfoCircle } from 'react-icons/bs'
-import { editComment } from '../../store/reply'
+import { editComment, getComments } from '../../store/reply'
+import { ReusableComment } from './ReusableComment'
 export const ReusableBlog = (props) => {
   
   const user = useSelector(state => state.auth)
@@ -156,7 +157,8 @@ export const ReusableBlog = (props) => {
             <>
               <div style={{padding:'0 1rem'}}>
                 { blogComments.map(reply => 
-                  <Comment 
+                  <ReusableComment
+                    blog={blog} 
                     key={reply.id} 
                     reply={reply} 
                     setCommentId={setCommentId} 
