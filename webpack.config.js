@@ -3,11 +3,11 @@ const dotenv = require('dotenv')
 const webpack = require('webpack')
 
 module.exports = () => {
-  const env = dotenv.config().parsed;
-  const envKeys = (Object.keys(env)||[]).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);
-    return prev;
-  }, {});
+  // const env = dotenv.config().parsed;
+  // const envKeys = (Object.keys(env)||[]).reduce((prev, next) => {
+  //   prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  //   return prev;
+  // }, {});
   
   return {
     entry: [
@@ -45,8 +45,8 @@ module.exports = () => {
     plugins: [
       new Dotenv()
     ],
-    plugins: [
-      new webpack.DefinePlugin(envKeys)
-    ]
+    // plugins: [
+    //   new webpack.DefinePlugin(envKeys)
+    // ]
   }
 }
