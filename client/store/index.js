@@ -6,9 +6,9 @@ import blogs from './blog'
 import news from './news'
 import reply from './reply'
 import comments from './comments'
+import gnews from './gnews'
 
-
-const reducer = combineReducers({ auth, blogs, news, reply, comments  })
+const reducer = combineReducers({ auth, blogs, news, reply, comments, gnews })
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
 

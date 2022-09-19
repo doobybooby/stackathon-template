@@ -1,6 +1,14 @@
 const Dotenv = require('dotenv-webpack')
+const dotenv = require('dotenv')
+const webpack = require('webpack')
 
-module.exports = (env) => {
+module.exports = () => {
+  const env = dotenv.config().parsed;
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+  
   return {
     entry: [
       './client/index.js'
@@ -36,6 +44,9 @@ module.exports = (env) => {
     },
     plugins: [
       new Dotenv()
+    ],
+    plugins: [
+      new webpack.DefinePlugin(envKeys)
     ]
   }
 }

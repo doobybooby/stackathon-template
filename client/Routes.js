@@ -12,6 +12,7 @@ import { Landing } from './components/pages/Landing';
 import { NavAccount } from './components/utils/NavAccount';
 import { ProfilePageEdit } from './components/pages/ProfilePageEdit';
 import { BlogForm } from './components/utils/BlogForm';
+import { Gnews } from './components/pages/Gnews';
 
 /**
  * COMPONENT
@@ -45,6 +46,7 @@ class Routes extends Component {
             <Route path="/blogs" component={Blogs} />
             <Route path="/root" component={Root} />
             <Route path="/account" component={NavAccount} />
+            <Route path="/gnews" component={Gnews} />
             <Route path='/' exact component={ Landing } />
           </Switch>
         )}

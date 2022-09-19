@@ -44,6 +44,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 <Link to="/home"> News </Link>
                 <Link to="/blogs"> Blogs </Link>
                 <Link to="/account"> Log In </Link>
+                <Link to="/gnews"> Gnews </Link>
               </div>
               <div style={{ flex:'1' }}>
                 <GoogleSearch />
